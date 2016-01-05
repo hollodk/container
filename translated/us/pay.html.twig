@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/css/custom.css') }}">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nike/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nike/js/jquery.countdown.js') }}"></script>
+
+                <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+                <script type="text/javascript">
+                Stripe.setPublishableKey('{{ campaign.stripePublic }}');
+
+                jQuery(function($) {
+                        $('#payment-form').submit(function(event) {
+                                var $form = $(this);
+                                $form.find('button').prop('disabled', true);
+                                Stripe.card.createToken($form, stripeResponseHandler);
+
+                                return false;
+                        });
+                });
+
+                function stripeResponseHandler(status, response) {
+                        var $form = $('#payment-form');
+
+                        if (response.error) {
+                                $form.find('#payment-errors').text(response.error.message);
+                                $form.find('#payment-errors').show();
+                                $form.find('button').prop('disabled', false);
+                        } else {
+                                var token = response.id;
+                                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                                $form.get(0).submit();
+                        }
+                };
+
+                </script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+        <body style="background:url({{ asset('bundles/app/nike/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div class="top_graybar">
+
+		</div>
+		<div class="mid_bluebg">
+			<div style="width:100%;max-width:1200px;margin:0px auto;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6 col-lg-push-6 text-center">
+							<div class="right_section_wrapper">
+							<span class="right_section_h1">Time limited offer</span>
+							<div id="defaultCountdown" class="countdown_wrapper"></div>
+							<p class="right_section_h2">Your chance for an iPhone 6S<br>+ Nike Fitness Tracker<br><span class="rs_h2_sub">+ *3 days free trial to happybetterlife</span></p>
+							</div>
+							<p class="right_section_h3">The first step to a healthy life<img src="{{ asset('bundles/app/nike/img/prod2.png') }}" class="right_section_product">
+							</p>
+						</div>
+						<div class="col-lg-6 col-lg-pull-6">
+							<div class="box_shadow left_section_form">
+								<div class="box_shadow2 ls_form_prize">Only<br>€1</div>
+								<div class="ls_form_header">
+									<p class="ls_form_h1">Sports package for just</p>
+								</div>
+								<div class="ls_form_wrapper">
+									<form action="" method="POST" id="payment-form">
+										<input id="name" value="" type="hidden">
+										<input id="address" value="" type="hidden">
+										<input id="city" value="" type="hidden">
+										<div class="ls_form_text">Please fill out credit card information</div>
+                                                                                <div id="payment-errors" class="alert alert-danger payment-errors" style="display: none"></div>
+                                                                                {% for flash_message in app.session.flashbag.get('error') %}
+                                                                                <div id="p-errors" class="alert alert-danger payment-errors">
+                                                                                    {{ flash_message }}
+                                                                                </div>
+                                                                                {% endfor %}
+
+										<ul class="list-inline text-center">
+											<li><img src="{{ asset('bundles/app/nike/img/visa.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/mastercard.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/americanexpress.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/jcb.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/discover.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/diners.png') }}" style="width:50px;height:auto;"></li>
+										</ul>
+										<div class="row">
+											<div class="col-md-12">
+												<span style="pointer-events:none;font-size:18px;">Card number</span><br>
+												<input class="inset_shadow ls_form_textbox" size="20" data-stripe="number" type="text" placeholder="This is the 16 digits in front of your card">
+											</div>
+											<div class="col-md-6">
+												<span style="pointer-events:none;font-size:18px;">Expiration Date</span><br>
+												<div class="row">
+													<div class="col-md-6">
+														<input class="inset_shadow ls_form_textbox" size="2" data-stripe="exp-month" placeholder="Month">
+													</div>
+													<div class="col-md-6">
+														<input class="inset_shadow ls_form_textbox" size="4" data-stripe="exp-year" placeholder="Year">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<span style="pointer-events:none;font-size:18px;">CVV2/CVC2</span><br>
+												<input class="inset_shadow ls_form_textbox" size="4" data-stripe="cvc" class="inset_shadow" type="text">
+												<p style="font-size:11px;line-height:12px;">(This is the last 3 digits displayed on the back of your card)</p>
+											</div>
+											<div class="col-md-12">
+												<span style="pointer-events:none;font-size:18px;">Full Name on card</span><br>
+												<input class="inset_shadow ls_form_textbox" class="inset_shadow" type="text">
+											</div>
+										</div>
+										<button type="submit" class="btn_gradient" style="display:block;width:100%;color:#fff;padding:10px;font-size:24px;font-weight:800;border:none;outline:none;border-radius:10px;">Complete Transaction</button>
+									</form>
+									<!--<form action="credit_card.php" method="post">
+										<div class="ls_form_text">Please fill out delivery information</div>
+										<input class="inset_shadow ls_form_textbox" name="fname" type="text" placeholder="First Name*">
+										<input class="inset_shadow ls_form_textbox" name="lname" type="text" placeholder="Last Name*">
+										<input class="inset_shadow ls_form_textbox" name="email" type="text" placeholder="Email*">
+										<label class="no_selection ls_form_toc">
+											<input type="checkbox" checked="">I have read and accepted the <a href="javascript:void(0)">Terms &amp; conditions</a>
+										</label>
+										<button class="btn_gradient ls_form_submit">Send my *FREE package</button>
+										<input name="ip" type="hidden">
+										<input name="timestamp" type="hidden">
+									</form>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="testimonial_section">
+				<div style="width:100%;max-width:1200px;margin:0px auto;">
+					<p class="testimonial_h1">
+						<span class="testimonial_h1_text">Customer Testimonials</span><br/>
+						<span class="testimonial_h1_sub">Hear from earlier participants and their experience with happybetterlife</span>
+					</p>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1_2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Brooke McCleary</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img1_2.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img2.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img3.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">324 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Brooke McCleary</a> We joined the "Say Yes, Just do it" campaign a few years ago. Also signed up through there at that time iPhone 3 campaign ha ha ha.. I still have it, can you believe it? My husband was actually the one who signed us up, he works alot and was missing quality time with the family. Now we join every year. Its a fun event ;)</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Gareth Steve</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img4.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img5.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img6.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">627 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Gareth Steve</a> The "Say Yes, Just do it" campaign have broad us more together as a family. And just the right tools to make activity fun, especially for the kids really makes the different! I won an iWatch, but it seems like my son have take owner ship over that one. He track all he´s running times, and with the Nike Fuel, he almost daily post he´s archievments!</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user3.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Charleen Beacker</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img7.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img8.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img9.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">283 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Charleen Beacker</a> We are not young anymore, but by "wogging" as we call it, we feel younger. And it gives us a special time wtih the grand kids. When we look around at the whole family togehter, those are the times worth remebering. Thank you "Say yes, Just do it" I got one of those Nike Fitness Trackers and when ever we are "wogging" I have to admit that we proudly share it on thet "The Facebook"</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Zoe Nell Lauritz</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img10.png') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img11.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img12.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">507 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Zoe Nell Lauritz</a> Staying healthy is alfa omega for me, I have a highly stressful job and are alone women in a mans world. Actually joined, "Say Yes, Just do it" cause Its so hard to meet people when you work as much as I do. And should the man of the dream with a good carriere and healthy economy and perferly not more than one kid come along I might accidently stumble into him ;) Its loney on the top..</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="testimonial_h1">
+							<span class="testimonial_h1_text">Our Team of Experts</span>
+						</p>
+						<div class="row text-center">
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team1.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Joseph Vaugn</b><br/>
+									Sports Therapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team2.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Diane Reynolds</b><br/>
+									Nutritionist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team3.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Leonardo Coleman</b><br/>
+									Physiotherapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team4.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Eleanor Griffin</b><br/>
+									Nutritional Therapist
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="middle_runners">
+
+				</div>
+				<div class="middle_grayarea">
+					“ Happy better life ”
+					<img src="{{ asset('bundles/app/nike/img/waterdroplet.png') }}">
+				</div>
+				<div class="bottom_termsandconditions">
+					<div style="width:100%;max-width:1200px;margin:0px auto;color:#000;">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-4">
+									<span class="toc_title">Acceptance of subscription conditions</span>
+									<p class="toc_details">By signing up you agree to happybetterlife.com must pull introductory price and subsequently the normal monthly cost of the associated card number. When you purchase a subscription, it is automatically renewed until you cancel it. (Via our support system). You must be 18 or older and have a Danish residence address, to have a valid subscription to happybetterlife.com. Welcome gift is no extra cost beyond intro amount as stated on the campaign, unless you do not cancel your trial within the three days has expired with 24 hours notice.</p>
+									<span class="toc_title">Charges for subscription service</span>
+									<p class="toc_details">Our ​​service costs 379, - / month. and charged in advance. All those amounts are in DKK and inclusive. Danish VAT. The right arising see. These conditions, which can be read in the "Returns". Payments as somehow rejected attempts will be raised again later for a new period. Rejected payment three times, canceled subscriptions automatically, and access to the next stop and possible. arrears will be sent to normal. invoice to the delivery address provided. It is solely the customer's responsibility if there are funds on the card and the payment to the page does not fail, if the customer wants the full participation and the right to any. prizes. Receipts for payments of membership is always sent to any time given email address.</p>
+									<span class="toc_title">Unsubscribe</span>
+									<p class="toc_details">You can always cancel your subscription
+									happybetterlife.com, by logging on to the side and contact us through the support system (.)  You must have at least terminate 24 hours before your trial subscription and regular subscription expires otherwise renew your subscription for another month period. If you have questions or wish to cancel your subscription, please feel free to contact us at support@happybetterlife.com weekdays 9:00 to 12:00, where Customer're available to help you with directions. E-mail customer service has a turnaround time of up to 72 hours on weekdays and weekends is closed. However, the customer does not cancel the subscription on behalf of clients without valid documentation received in the form of picture identification. The termination is required by the customer and follow carefully designated instructions with respect. termination. It is the customer's responsibility and obligation to terminate an active subscription
+									happybetterlife.com if the subscription is no longer required by the customer.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Returns</span>
+									<p class="toc_details">Your subscription purchase is accompanied by the statutory 14 days to cancel. You can undo if you do NOT take your subscription in use within 14 days. You take your subscription / service use, immediately you made ​​your purchase. Do you want to cancel your purchase, you can terminate after 24 hours .. You will thus be charged intro amount. When you have reached an agreement on a subscription, there is only withdrawal at closing and not in connection with the ongoing payment for the subscription.</p>
+									<span class="toc_title">Cardholder liability and hæftelses ratio</span>
+									<p class="toc_details">Registration is binding from the second you log into your profile and thus activate your subscription. The card holder is required to pay the full amount of all the selected subscription period and subsequent subscription withdrawals, unless the card holder in the meantime have unsubscribed correctly see. The conditions for termination. It is the cardholder's responsibility that there are insufficient funds in the attached maps which subscription preferred and in the case of insufficient funds, fraud or repeated mistakes, lost the right to access, welcome gifts and return. See. The conditions of "welcome gifts" that can be read in this subscription service.</p>
+									<span class="toc_title">Modifications</span>
+									<p class="toc_details">happybetterlife.com, retains all rights to modify our current terms and conditions. If there are changes, the updated terms appear under "conditions" on happybetterlife.com, and you will then have the right to if necessary. termination of your subscription / membership for 30 days if you disagree with the change. However, this is applicable only if this constitutes significant changes which have great impact on your existing contract basis for your subscription to happybetterlife.com. After 30 days, any existing member will be considered as still a member and be understood with the new changes. There may at any time change address information, subscriber information via its user profile. The changes will then take effect meaning. Applicable conditions.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Acceptance of subscription conditions</span>
+									<p class="toc_details">By signing up you agree to happybetterlife.com must pull introductory price and subsequently the normal monthly cost of the associated card number. When you purchase a subscription, it is automatically renewed until you cancel it. (Via our support system). You must be 18 or older and have a Danish residence address, to have a valid subscription to happybetterlife.com. Welcome gift is no extra cost beyond intro amount as stated on the campaign, unless you do not cancel your trial within the three days has expired with 24 hours notice.</p>
+									<span class="toc_title">Welcome gifts</span>
+									<p class="toc_details">We expect a delivery time of up to 30 days, depending on demand and product / gift certificates, etc. in the welcome gifts. We will try to deliver the gift within this period, but it may take up more time. Still have not received your welcome gift within our delivery time, please contact our customer service, so we can sent you your welcome gift. If the welcome gift is out of stock, delayed or otherwise make the delivery time of 30 days can not be met, sent another accessible welcome gift, which is in stock and the initial welcome gift deleted. Welcome gift is void if the correct delivery address is not entered on happybetterlife.com within possibly. unsubscribe and no later than 7 days after registration. Welcome gift lapse even if introductory amount is not paid in time or is rejected by the payment provider, or if the customer has migrated to normal. pay period and payments rejected one or more times - and even if the payment can not go through for other reasons that mean that we can not withdraw membership. One or more rupture, resulting in cancellation of the subscription, and to welcome the gift lapse. So that we can send you a gift, we must ensure that you are who you say you are, so it requires the submission of proof of address in the form of a copy of the passport or health card + account where your name and address clearly stated (max . 3 months old). In addition, the name used to match the payment information sent to us to be the same. This is done to ensure that we shall send the gift to the rightful owner and that there is abuse of credit card / stolen credit cards. A security for us and you as a customer. If this documentation is complete or you (the client) refuses to submit this lapse right gift. It is a requirement to receive the gift. The documentation must be sent to Customer Service at support@happybetterlife.com<br>
+									. We reserve corrected to reject evidence if there are doubts about the real unit.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				var today = new Date();
+				var tomorrow = new Date();
+				tomorrow.setDate(today.getDate()+2);
+				tomorrow.setHours(today.getDate()+14);
+				tomorrow.setMinutes(today.getDate()+60);
+				$('#defaultCountdown').countdown({until: tomorrow});
+			});
+		</script>
+	</body>
+</html>

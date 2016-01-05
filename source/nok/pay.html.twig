@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                <!-- <link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/css/custom.css') }}"> -->
+		<link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.js') }}"></script>
+		<style>
+		.box_shadow{
+			-webkit-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+		}
+		.inset_shadow{
+			-webkit-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			-moz-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+		}
+		.no_selection{
+			-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+			-moz-user-select: none; /* mozilla browsers */
+			-khtml-user-select: none; /* webkit (konqueror) browsers */
+			-ms-user-select: none; /* IE10+ */
+		}
+		.btn_gradient{
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#397a32+0,5ab518+50,397a32+100 */
+			background: rgb(57,122,50); /* Old browsers */
+			background: -moz-linear-gradient(top,  rgba(57,122,50,1) 0%, rgba(90,181,24,1) 50%, rgba(57,122,50,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#397a32', endColorstr='#397a32',GradientType=0 ); /* IE6-9 */
+
+		}
+		</style>
+
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+		<script type="text/javascript">
+		Stripe.setPublishableKey('{{ campaign.stripePublic }}');
+
+		jQuery(function($) {
+			$('#payment-form').submit(function(event) {
+				var $form = $(this);
+
+				// Disable the submit button to prevent repeated clicks
+				$form.find('button').prop('disabled', true);
+
+				Stripe.card.createToken($form, stripeResponseHandler);
+
+				// Prevent the form from submitting with the default action
+				return false;
+			});
+		});
+
+		function stripeResponseHandler(status, response) {
+			var $form = $('#payment-form');
+
+			if (response.error) {
+				// Show the errors on the form
+				$form.find('#payment-errors').text(response.error.message);
+                                $form.find('#payment-errors').show();
+				$form.find('button').prop('disabled', false);
+			} else {
+				// response contains id and card, which contains additional card details
+				var token = response.id;
+				// Insert the token into the form so it gets submitted to the server
+				$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+				// and submit
+				$form.get(0).submit();
+			}
+		};
+		</script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+	<body style="background:url({{ asset('bundles/app/nikeapple/en/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div style="width:100%;background:#333;border-bottom:2px solid #fff;height:100px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<div style="height:100px;">
+
+					</div>
+				</div>
+				<div style="float:left;width:720px;text-align:center;padding-top:10px;">
+				<span style="font-size:36px;text-transform:uppercase;font-weight:700;color:#fff;">TIDSBEGRENSET TILBUD</span>
+				<div id="defaultCountdown" style="width:450px;height:120px;margin:0px auto;margin-top:10px;"></div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<script>
+		$(function () {
+			var today = new Date();
+			var tomorrow = new Date();
+			tomorrow.setDate(today.getDate()+1);
+			tomorrow.setHours(today.getDate()+24);
+			tomorrow.setMinutes(today.getDate()+60);
+			$('#defaultCountdown').countdown({until: tomorrow});
+		});
+		</script>
+		<div style="width:100%;background:#14b5f1;height:400px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<form method="post" action="{{ path('p_pay', {'url':campaign.url}) }}" id="payment-form">
+					<div class="box_shadow" style="width:100%;background:#ff820d;border:2px solid #fff;padding:10px 15px;border-radius:10px;position:relative;margin-bottom:20px;padding-top:5px;">
+						<div style="padding:40px;background:#5ab518;position:absolute;top:-90px;right:-60px;font-size:48px;font-weight:800;border-radius:50%;text-align:center;line-height:48px;border:2px solid #fff;color:#fff;text-shadow: 2px 2px rgba(0,0,0,.4);">Kun<br/>5 kr</div>
+						<div style="padding-bottom:8px;color:#fff;font-weight:600;border-bottom:1px solid #fff;margin-bottom:15px;padding-right:110px;">
+							<p style="font-size:20px;text-align:left;margin:0px;position:relative;padding-left:40px;"><img src="{{ asset('bundles/app/nikeapple/en/img/lock.png') }}" style="position:absolute;left:0px;top:0px;">
+							Dette er en sikker 128-bit SSL Kryptert betaling. Du er trygg</p>
+						</div>
+						<div style="width:100%;background:#fff;border-radius:10px;padding:10px 30px;">
+							<div style="padding-bottom:10px;margin-bottom:15px;font-size:24px;font-weight:600;border-bottom:1px solid #ccc;">Vennligst fyll ut kredittkortinformasjon</div>
+							<div id="payment-errors" class="alert alert-danger payment-errors" style="display: none"></div>
+                                                        {% for flash_message in app.session.flashbag.get('error') %}
+							<div id="p-errors" class="alert alert-danger payment-errors">
+                                                            {{ flash_message }}
+                                                        </div>
+                                                        {% endfor %}
+
+							<ul class="list-inline text-center">
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/visa.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/mastercard.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/americanexpress.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/jcb.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/discover.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/diners.png') }}" style="width:50px;height:auto;"></li>
+							</ul>
+							<span style="pointer-events:none;font-size:18px;">Kortnummer</span><br/>
+							<input data-stripe="number" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Dette er de 16 siffer foran kortet ditt">
+							<div style="float:left;width:50%;padding-right:5px;">
+								<span style="pointer-events:none;font-size:18px;">Utløpsdato</span><br/>
+								<div style="float:left;width:50%;padding-right:5px;">
+								<input data-stripe="exp-month" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Måned">
+								</div>
+								<div style="float:left;width:50%;padding-left:5px;">
+								<input data-stripe="exp-year" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="År">
+								</div>
+								<div style="clear:both"></div>
+							</div>
+							<div style="float:left;width:50%;padding-left:5px;">
+								<div style="float:left;width:50%;padding-right:5px;">
+								<span style="pointer-events:none;font-size:18px;">CVV2/CVC2</span><br/>
+								<input data-stripe="cvc" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="CVC">
+								</div>
+								<div style="float:left;width:50%;padding-right:5px;">
+								<p style="font-size:11px;line-height:12px;padding-top:20px;">(Dette er de 3 siste sifrene som vises på baksiden av kortet)</p>
+								</div>
+							</div>
+							<div style="clear:both"></div>
+							<span style="pointer-events:none;font-size:18px;">Fullt navn på kortet</span><br/>
+							<input class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Vennligst oppgi ditt fulle navn her...">
+							<button class="btn_gradient" style="display:block;width:100%;color:#fff;padding:10px;font-size:24px;font-weight:800;border:none;outline:none;border-radius:10px;">Fullfør transakskjonen</button>
+						</div>
+					</div>
+					</form>
+				</div>
+				<div style="float:left;width:720px;">
+					<div style="width:600px;height:100px;margin:0px auto;padding-top:20px;">
+						<p style="font-size:34px;color:#fff;font-weight:600;text-align:center;line-height:36px;">iPhone 6S + Nike Fitness Tracker<br/><span style="font-size:14px;font-weight:200;">+ *3dagers gratis prøveperiode til happybetterlifestyle.com</span></p>
+						<p style="text-align:center;color:#fff;font-size:32px;font-weight:500;">Det første skrittet til et sunt liv<img src="{{ asset('bundles/app/nikeapple/en/img/prod2.png') }}" style="width:600px;height:auto;display:block;margin:0px auto;">
+						</p>
+
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div style="width:100%;background:#333;padding:10px 40px;;margin-top:460px;text-align:center;color:#fff;font-size:36px;font-weight:600;text-transform:uppercase;">
+			“ Get a Happy better lifestyle ”
+			<img src="{{ asset('bundles/app/nikeapple/en/img/waterdroplet.png') }}" style="display:inline-block;height:60px;width:auto;vertical-align:middle;">
+		</div>
+		<div style="width:100%;background:#aaa;">
+			<div style="width:1200px;margin:0px auto;color:#000;">
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Aksept av abonnementsforhold</span>
+					<p style="font-size:12px;">Ved å registrere deg samtykker du i at happybetterlifestyle.com trekker introduksjonsprisen og deretter den ordinære, månedlige avgiften fra det tilhørende kortnummeret. Når du kjøper et abonnement, blir det automatisk fornyet (via vårt kundestøttesystem) inntil du avbryter det. Du må være 18 år eller eldre og ha bostedsadresse i Norge for å ha et gyldig abonnement hos happybetterlifestyle.com. Velkomstgaven kommer uten noen ekstra kostnad utover introduksjonsprisen som er angitt i kampanjene, med mindre du ikke avbryter prøveperioden innen 3 dager og med minst 24 timers varsel.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Kostnader for abonnementstjenesten</span>
+					<p style="font-size:12px;">Tjenesten vår koster 379,-/mnd. og belastes på forskudd. Alle beløp er i norske kroner og inkluderer moms. Angreretten følger de vilkår som nevnes i avsnittet om kanselleringer. Disse vilkårene er beskrevet i avsnittet "Returvarer". Hvis en betaling avvises eller avslås vil vi forsøke å ta betalt for abonnementet tre ganger, og dersom vi ikke lykkes med tredje forsøk vil abonnementet automatisk kanselleres, og all tilgang til tjenesten vil opphøre. Forfalte beløp vil innkreves gjennom faktura til leveringsadressen du oppgir. Det er utelukkende kundens ansvar å sørge for at det er tilstrekkelige midler på kortet og at de månedlige innbetalingene innsamles. Dette er en forutsetning for full deltakelse og retten til å motta premier. </p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Kansellering av abonnement</span>
+					<p style="font-size:12px;">Du kan alltid si opp abonnement på happybetterlifestyle.com ved å logge deg inn på siden og ta kontakt med oss ​​via kundestøttesystemet (). Du må kansellere abonnementet minst 24 timer før prøveabonnementet eller det vanlige abonnement utløper, ellers vil vi fornye abonnementet med en ny måned. Hvis du har spørsmål eller ønsker å avbestille abonnementet, kan du gjerne kontakte oss på support@happybetterlifestyle.com alle hverdager mellom klokken 09.00 og 12.00, så vil kundeservice bistå deg. E-poster som sendes til kundeservice har en behandlingstid på opptil 72 timer for hverdager, og er stengt i helgene. Imidlertid kan ikke kundeservice kansellere abonnementer på forespørsel av representanter på vegne av kunder uten at gyldig dokumentasjon mottas i form av identifikasjon med bilde. Kunden må kreve oppsigelsen og nøye følge instruksjonene for oppsigelse. Det er kundens ansvar og plikt å avslutte et aktivt abonnement på happybetterlifestyle.com dersom kunden ikke lenger ønsker abonnementet.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Returvarer</span>
+					<p style="font-size:12px;">Kjøp av ethvert abonnement kommer med 14-dagers angrefrist, som fastsatt av loven. Du kan kun kansellere abonnementet dersom du IKKE bruker det i løpet av disse 14 dagene. Ditt abonnement starter når kjøpet utføres. Om du ønsker å kansellere kjøpet, kan du kun gjøre dette etter en periode på 24 timer, dette skyldes tekniske forhold. Da belastes du ikke for introduksjonsprisen. Når du har inngått en avtale om et abonnement, er det bare mulig å kansellere prøveabonnementet, og ikke den pågående betalingen for abonnementet.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Kortholderens ansvarsforhold</span>
+					<p style="font-size:12px;">Påmeldingen er bindende fra det øyeblikket du registrerer deg og aktiverer abonnementet. Du aktiverer abonnementet når introduksjonsprisen er betalt. Kortholderen er pålagt å betale hele beløpet for hele den valgte tegningsperioden og påfølgende abonnementsbetalinger, med mindre kortholderen i mellomtiden har meldt seg ut etter reglementet. Vilkår for oppsigelse. Det er kortholders ansvar at det er dekning på kredittkortet som abonnementet er koblet til. Ved eventuell manglende dekning, ved bedrageri eller gjentatte feil, mister abonnenten retten til å få tilgang til området, velkomstgaver og returvarer. Se betingelser for velkomstgaver, disse finnes i denne abonnementstjenesten.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Endringer</span>
+					<p style="font-size:12px;">happybetterlifestyle.com beholder alle rettigheter til å endre nåværende vilkår. Hvis det forekommer endringer, vil de oppdaterte vilkårene vises under «betingelser» på happybetterlifestyle.com, og du vil da ha rett til å si opp abonnementet/medlemskapet innen 30 dager etter endringsdato dersom du er uenig med endringene. Dette gjelder dog bare for tilfeller av vesentlige endringer som har stor innvirkning på det eksisterende kontraktsgrunnlaget for ditt abonnement hos happybetterlifestyle.com. Etter 30 dager vil et hvilket som helst eksisterende medlem betraktes som et fortsatt medlem som er inneforstått med de nye endringene. Det kan når som helst forekomme endringer av adresseinformasjon og abonnementsinformasjon gjennom kundestøttesystemet. Endringene vil da tre i kraft. Se gjeldende forhold.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Velkomstgaver</span>
+					<p style="font-size:12px;">Vi forventer en leveringstid på inntil 30 dager, avhengig av etterspørsel og produkt/gavekort, osv. Vi vil prøve å levere gaven innenfor denne perioden, men det kan ta lengre tid. Hvis du fortsatt ikke har mottatt velkomstgaven innenfor leveringstiden, bes du om å kontakte kundeservice slik at vi kan sende deg velkomstgaven. Hvis velkomstgaven er utsolgt, forsinket eller av andre årsaker ikke kan leveres innen 30 dager, vil vi sende deg en annen velkomstgave som er på lager, og den opprinnelige velkomstgaven opphører. Velkomstgaven er ugyldig dersom riktig leveringsadresse ikke er oppgitt på happybetterlifestyle.com før oppsigelsen/avsluttet abonnement, og senest 7 dager etter registrering. Velkomstgaven bortfaller selv om introduksjonsbeløpet ikke betales i tide eller om kredittkortet blir avvist av betalingsleverandøren, eller dersom kunden har flyttet til ordinært abonnement og betalingene blir avvist en eller flere ganger – og selv om betalingen ikke kan behandles av andre årsaker som gjør det umulig å heve betaling. En eller flere brudd på disse forholdene vil resultere i at abonnementet kanselleres og retten til å motta velkomstgave opphører. Før vi sender deg en gave, må vi sørge for at du er den du sier du er, hvilket krever innsending av bevis på adresse sammen med en kopi av pass eller ID-kort, samt en regning hvor ditt navn og adresse tydelig vises (maks. 3 måneder gammel). I tillegg skal navnet som brukes til å betale for abonnementet og/eller prøveabonnementet samsvare med navnet på adressen hvor du vil motta gaven. Dette er for å sikre at vi leverer gave til den rettmessige eieren, og at det ikke forekommer misbruk av (stjålne) kredittkort. Hvis denne dokumentasjonen ikke er komplett, eller du (kunden) nekter å sende den inn, bortfaller retten til gaven, da dette er et krav for å kunne motta gaven. Dokumentasjonen må sendes til kundeservice på support@happybetterlifestyle.com. Vi forbeholder oss retten til å avvise dokumenter dersom det er tvil om ektheten.</p>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+	</body>
+</html>

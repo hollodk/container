@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                <!-- <link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/css/custom.css') }}"> -->
+		<link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.js') }}"></script>
+		<style>
+		.box_shadow{
+			-webkit-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+		}
+		.inset_shadow{
+			-webkit-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			-moz-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+		}
+		.no_selection{
+			-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+			-moz-user-select: none; /* mozilla browsers */
+			-khtml-user-select: none; /* webkit (konqueror) browsers */
+			-ms-user-select: none; /* IE10+ */
+		}
+		.btn_gradient{
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#397a32+0,5ab518+50,397a32+100 */
+			background: rgb(57,122,50); /* Old browsers */
+			background: -moz-linear-gradient(top,  rgba(57,122,50,1) 0%, rgba(90,181,24,1) 50%, rgba(57,122,50,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#397a32', endColorstr='#397a32',GradientType=0 ); /* IE6-9 */
+
+		}
+		</style>
+
+		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+		<script type="text/javascript">
+		Stripe.setPublishableKey('{{ campaign.stripePublic }}');
+
+		jQuery(function($) {
+			$('#payment-form').submit(function(event) {
+				var $form = $(this);
+
+				// Disable the submit button to prevent repeated clicks
+				$form.find('button').prop('disabled', true);
+
+				Stripe.card.createToken($form, stripeResponseHandler);
+
+				// Prevent the form from submitting with the default action
+				return false;
+			});
+		});
+
+		function stripeResponseHandler(status, response) {
+			var $form = $('#payment-form');
+
+			if (response.error) {
+				// Show the errors on the form
+				$form.find('#payment-errors').text(response.error.message);
+                                $form.find('#payment-errors').show();
+				$form.find('button').prop('disabled', false);
+			} else {
+				// response contains id and card, which contains additional card details
+				var token = response.id;
+				// Insert the token into the form so it gets submitted to the server
+				$form.append($('<input type="hidden" name="stripeToken" />').val(token));
+				// and submit
+				$form.get(0).submit();
+			}
+		};
+		</script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+	<body style="background:url({{ asset('bundles/app/nikeapple/en/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div style="width:100%;background:#333;border-bottom:2px solid #fff;height:100px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<div style="height:100px;">
+
+					</div>
+				</div>
+				<div style="float:left;width:720px;text-align:center;padding-top:10px;">
+				<span style="font-size:36px;text-transform:uppercase;font-weight:700;color:#fff;">TIJDELIJKE AANBIEDING</span>
+				<div id="defaultCountdown" style="width:450px;height:120px;margin:0px auto;margin-top:10px;"></div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<script>
+		$(function () {
+			var today = new Date();
+			var tomorrow = new Date();
+			tomorrow.setDate(today.getDate()+1);
+			tomorrow.setHours(today.getDate()+24);
+			tomorrow.setMinutes(today.getDate()+60);
+			$('#defaultCountdown').countdown({until: tomorrow});
+		});
+		</script>
+		<div style="width:100%;background:#14b5f1;height:400px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<form method="post" action="{{ path('p_pay', {'url':campaign.url}) }}" id="payment-form">
+					<div class="box_shadow" style="width:100%;background:#ff820d;border:2px solid #fff;padding:10px 15px;border-radius:10px;position:relative;margin-bottom:20px;padding-top:5px;">
+						<div style="padding:40px;background:#5ab518;position:absolute;top:-90px;right:-60px;font-size:32px;font-weight:800;border-radius:50%;text-align:center;line-height:48px;border:2px solid #fff;color:#fff;text-shadow: 2px 2px rgba(0,0,0,.4);">Slechts<br/>1€</div>
+						<div style="padding-bottom:8px;color:#fff;font-weight:600;border-bottom:1px solid #fff;margin-bottom:15px;padding-right:110px;">
+							<p style="font-size:20px;text-align:left;margin:0px;position:relative;padding-left:40px;"><img src="{{ asset('bundles/app/nikeapple/en/img/lock.png') }}" style="position:absolute;left:0px;top:0px;">
+							Dit is een veilige 128-bit SSL-gecodeerd betaling. Je bent veilig</p>
+						</div>
+						<div style="width:100%;background:#fff;border-radius:10px;padding:10px 30px;">
+							<div style="padding-bottom:10px;margin-bottom:15px;font-size:24px;font-weight:600;border-bottom:1px solid #ccc;">Vul de creditcardgegevens in</div>
+							<div id="payment-errors" class="alert alert-danger payment-errors" style="display: none"></div>
+                                                        {% for flash_message in app.session.flashbag.get('error') %}
+							<div id="p-errors" class="alert alert-danger payment-errors">
+                                                            {{ flash_message }}
+                                                        </div>
+                                                        {% endfor %}
+
+							<ul class="list-inline text-center">
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/visa.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/mastercard.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/americanexpress.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/jcb.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/discover.png') }}" style="width:50px;height:auto;"></li>
+								<li><img src="{{ asset('bundles/app/nikeapple/en/img/diners.png') }}" style="width:50px;height:auto;"></li>
+							</ul>
+							<span style="pointer-events:none;font-size:18px;">Kaartnummer</span><br/>
+							<input data-stripe="number" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Dit is de 16 cijfers in de voorkant van uw kaart">
+							<div style="float:left;width:50%;padding-right:5px;">
+								<span style="pointer-events:none;font-size:18px;">Vervaldatume</span><br/>
+								<div style="float:left;width:50%;padding-right:5px;">
+								<input data-stripe="exp-month" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Maand">
+								</div>
+								<div style="float:left;width:50%;padding-left:5px;">
+								<input data-stripe="exp-year" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Jaar">
+								</div>
+								<div style="clear:both"></div>
+							</div>
+							<div style="float:left;width:50%;padding-left:5px;">
+								<div style="float:left;width:50%;padding-right:5px;">
+								<span style="pointer-events:none;font-size:18px;">CVV2/CVC2</span><br/>
+								<input data-stripe="cvc" class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="CVC">
+								</div>
+								<div style="float:left;width:50%;padding-right:5px;">
+								<p style="font-size:11px;line-height:12px;padding-top:20px;">(Dit zijn de laatste 3 cijfers op de achterkant van uw kaart)</p>
+								</div>
+							</div>
+							<div style="clear:both"></div>
+							<span style="pointer-events:none;font-size:18px;">Volledige naam op de kaart</span><br/>
+							<input class="inset_shadow" type="text" style="display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;" placeholder="Vul hier uw volledige naam ...">
+							<button class="btn_gradient" style="display:block;width:100%;color:#fff;padding:10px;font-size:24px;font-weight:800;border:none;outline:none;border-radius:10px;">Transactie afronden</button>
+						</div>
+					</div>
+					</form>
+				</div>
+				<div style="float:left;width:720px;">
+					<div style="width:600px;height:100px;margin:0px auto;padding-top:20px;">
+						<p style="font-size:34px;color:#fff;font-weight:600;text-align:center;line-height:36px;">iPhone 6S + Nike Fitness Tracker<br/><span style="font-size:14px;font-weight:200;">+ *3dagen gratis happybetterlifestyle.com op proef</span></p>
+						<p style="text-align:center;color:#fff;font-size:32px;font-weight:500;">De eerste stap naar een gezonde levensstijl<img src="{{ asset('bundles/app/nikeapple/en/img/prod2.png') }}" style="width:600px;height:auto;display:block;margin:0px auto;">
+						</p>
+
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div style="width:100%;background:#333;padding:10px 40px;;margin-top:460px;text-align:center;color:#fff;font-size:36px;font-weight:600;text-transform:uppercase;">
+			“ Get a Happy better lifestyle ”
+			<img src="{{ asset('bundles/app/nikeapple/en/img/waterdroplet.png') }}" style="display:inline-block;height:60px;width:auto;vertical-align:middle;">
+		</div>
+		<div style="width:100%;background:#aaa;">
+			<div style="width:1200px;margin:0px auto;color:#000;">
+				<div style="width:1200px;margin:0px auto;color:#000;">
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Aanvaarding van abonnementsvoorwaarden</span>
+					<p style="font-size:12px;">Door in te schrijven gaat U akkoord met deze Algemene Voorwaarden van Happybetterlifestyle.com. U accepteert de betaling van 1 EUR voor drie dagen proef en U accepteert dat het abonnement doorloopt voor de normale prijs van 52€ en dat het  elke maand automatisch verlengd wordt tot wederopzegging  (via vipmemberships.info of het ticketsysteem). U moet  tenminste  18 jaar oud zijn en woonachtig zijn in Netherland voor een geldig abonnement op happybetterlifestyle.com. Welkomstgeschenken, prijzen of cadeaubonnen hebben geen extra kosten.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Abonnementskosten</span>
+					<p style="font-size:12px;">Deze dienst heeft een maandelijks abonnementsgeld dat op het moment 52 EUR/ maand bedraagt, en dat van te voren wordt afgerekend in € en is inclusief BTW. Als een betaling drie keer is geweigerd wordt Uw toegang gesloten en Uw abonnement opgezegd. Een rekening wordt naar het opgegeven bezorgadres gestuurd. Het is volledig de verantwoordelijkheid van de klant om ervoor te zorgen dat er genoeg saldo op de creditcard beschikbaar is. Betalingsbewijzen van het lidmaatschapsgeld worden naar het e-mailadres gestuurd dat in het profiel van de abonnee is opgeven.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Abonnement opzeggen</span>
+					<p style="font-size:12px;">U kunt Uw abonnement op happybetterlifestyle.com opzeggen door met Uw inloggegevens in te loggen op: www.vipmemberships.info. Klik op de “abonnement opzeggen" knop of creëer een ondersteuningsticket op www.vipmemberships.info Inloggen is vereist. Heeft U nog vragen of wilt U Uw abonnement opzeggen, neem kunt U contact met ons opnemen op support@happybetterlifestyle.com op weekdagen van 9:00 tot 12:00, de openingstijden van de klantenservice. E-mails worden binnen 72 uur beantwoordt op weekdagen, exclusief weekends. Opzeggen van een abonnement kan alleen met geldige documentatie in de vorm van een geldig identiteitsbewijs met foto. Het beëindigingsproces wordt door de klant vereist. Alleen de klant kan een abonnement op Happybetterlifestyle.com opzeggen.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Retouren</span>
+					<p style="font-size:12px;">Volgens de wet heeft U 14 dagen bedenktijd. Alleen van toepassing als U Uw abonnement NIET binnen 14 dagen in gebruik neemt. U kunt een abonnement na 24 uur opzeggen zonder recht op restitutie over de proefperiode of normaal abonnement. Bij opzeggen volgt nog een laatste betaling op Uw creditcard aan het einde van die maand. De automatische betaling voor latere maanden wordt gestopt.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Kaarthouder aansprakelijkheid en latente verplichtingen</span>
+					<p style="font-size:12px;">De registratie is bindend op het moment dat U inlogt op Uw profiel en Uw abonnement activeert. De kaarthouder is verplicht tot het betalen van het volledige bedrag voor de abonnementsperiode en latere abonnementsgelden, tenzij de kaarthouder ondertussen het abonnement op de juiste manier heeft geannuleerd (zie voorwaarden voor beëindiging). Het is de verantwoordelijkheid van de kaarthouder om ervoor te zorgen dat er onvoldoende saldo is of de creditcard te annuleren in geval van verlies. In het geval van onvoldoende saldo, fraude of herhaalde fouten wordt het recht op het gebruik van de dienst, welkomstgescheken en retours geschorst (Zie voorwaarden voor "welkomstgeschenken" (vermeld onder de abonnementsdienst)).</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Aanpassingen</span>
+					<p style="font-size:12px;">Happybetterlifestyle.com behoudt het recht om de huidige voorwaarden te wijzigen. Bij wijzigingen zullen de algemene voorwaarden worden bijgewerkt en het is de verantwoordelijkheid van de klant om op wijzigingen te controleren. De klant kan een abonnement opzeggen als hij of zij het niet eens is met de wijzigingen. Dit is alleen van toepassing bij significante wijzigingen die een grote invloed hebben op het bestaande. Als een lid geen actie onderneemt binnen 30 dagen worden de nieuwe voorwaarden als geaccepteerd beschouwd. De abonnee is altijd verantwoordelijk voor correcte profielinformatie.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Welkomstgeschenken</span>
+					<p style="font-size:12px;">Leveringstijd tot 30 dagen, afhankelijk van de vraag en product / cadeaubon. Wij proberen het geschenk binnen deze periode te leveren, er kan vertraging optreden. Als U Uw welkomstgeschenk niet binnen 30 dagen hebt ontvangen, neem dan contact op met de klantenservice zodat we Uw welkomstgeschenk alsnog op kunnen sturen. Als het welkomstgeschenk niet leverbaar is of vertraagd. We zullen een ander beschikbaar welkomstgeschenk opsturen en het eerste welkomstgeschenk annuleren. Welkomstgeschenk is en het geval van een incorrect ingevoerd bezorgadres. afmelden en niet later dan 7 dagen na registratie. Om U een geschenk te sturen moeten wij zeker zijn dat U bent wie U zegt dat U bent. Daarom is een bewijs van adres nodig in de vorm van een kopie van Uw paspoort en energierekening met Uw naam en adres duidelijk vermeld (max. 3 maanden oud). En het moet gelijk zijn aan de betalingsinformatie zoals opgegeven bij het aangaan van het abonnement of bijgewerkt op het profiel om ervoor te zorgen dat het geschenk naar de rechtmatige eigenaar wordt gestuurd en dat er geen misbruik wordt gebruikt van een creditcard of dat een gestolen creditcard wordt gebruikt. Dit is voor de veiligheid van U als klant. Als de documentatie niet compleet is, verliest U (de klant) het recht op het geschenk. Documentatie moet naar de klantenservice gestuurd worden op support@Happybetterlifestyle.com. Het recht op het afwijzen van documenten in geval van verdachte fraude voorbehouden.</p>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+	</body>
+</html>

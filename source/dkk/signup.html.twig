@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+                <!-- <link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/css/custom.css') }}"> -->
+		<link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.js') }}"></script>
+		<style>
+		.box_shadow{
+			-webkit-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+		}
+		.inset_shadow{
+			-webkit-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			-moz-box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+			box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+		}
+		.no_selection{
+			-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+			-moz-user-select: none; /* mozilla browsers */
+			-khtml-user-select: none; /* webkit (konqueror) browsers */
+			-ms-user-select: none; /* IE10+ */
+		}
+		.btn_gradient{
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#397a32+0,5ab518+50,397a32+100 */
+			background: rgb(57,122,50); /* Old browsers */
+			background: -moz-linear-gradient(top,  rgba(57,122,50,1) 0%, rgba(90,181,24,1) 50%, rgba(57,122,50,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(57,122,50,1) 0%,rgba(90,181,24,1) 50%,rgba(57,122,50,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#397a32', endColorstr='#397a32',GradientType=0 ); /* IE6-9 */
+
+		}
+                input[type="text"] {
+                    display:block;
+                    width:100%;
+                    height:40px;
+                    margin-bottom:15px;
+                    padding:10px;
+                    font-size:16px;
+                    border:1px solid #ccc;
+                    outline:none;
+                    font-weight:300;
+                    box-shadow: inset 1px 2px 3px 0px rgba(0,0,0,0.5);
+                }
+		</style>
+                                {% include "theme/ga.html.twig" %}
+
+	</head>
+	<body style="background:url({{ asset('bundles/app/nikeapple/en/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div style="width:100%;background:#333;border-bottom:2px solid #fff;height:100px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<div style="height:100px;">
+
+					</div>
+				</div>
+				<div style="float:left;width:720px;text-align:center;padding-top:10px;">
+				<span style="font-size:36px;text-transform:uppercase;font-weight:700;color:#fff;">Tidsbegrænset tilbud</span>
+				<div id="defaultCountdown" style="width:450px;height:120px;margin:0px auto;margin-top:10px;"></div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<script>
+		$(function () {
+			var today = new Date();
+			var tomorrow = new Date();
+			tomorrow.setDate(today.getDate()+1);
+			tomorrow.setHours(today.getDate()+24);
+			tomorrow.setMinutes(today.getDate()+60);
+			$('#defaultCountdown').countdown({until: tomorrow});
+		});
+		</script>
+		<div style="width:100%;background:#14b5f1;height:400px;">
+			<div style="width:1200px;margin:0px auto;">
+				<div style="float:left;width:480px;">
+					<div class="box_shadow" style="width:100%;background:#ff820d;border:2px solid #fff;padding:10px 15px;border-radius:10px;position:relative;margin-bottom:20px;padding-top:5px;">
+						<div style="padding:40px;background:#5ab518;position:absolute;top:-90px;right:-60px;font-size:48px;font-weight:800;border-radius:50%;text-align:center;line-height:48px;border:2px solid #fff;color:#fff;">KUN<br/>1 KR</div>
+						<div style="padding-bottom:0px;color:#fff;font-weight:600;border-bottom:1px solid #fff;margin-bottom:15px;padding-right:100px;">
+							<p style="font-size:28px;text-align:center;margin:0px;">
+							Say yes, just do it</p>
+						</div>
+						<div style="width:100%;background:#fff;border-radius:10px;padding:10px 30px;">
+
+							<div style="padding-bottom:10px;margin-bottom:15px;font-size:24px;font-weight:600;border-bottom:1px solid #ccc;">Indtast din email..</div>
+                                                        {{ form_start(form, {'attr':{'class':'am-class'}}) }}
+
+							<!--{{ form_widget(form.firstName, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'First Name*'}}) }}
+							{{ form_widget(form.lastName, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'Last Name*'}}) }}-->
+							{{ form_widget(form.email, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'Venligst indtast din email her...*'}}) }}
+							<!--{{ form_widget(form.phone, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'Mobile*'}}) }}
+							{{ form_widget(form.street, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:120px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;resize:none;font-weight:300;','placeholder':'Address*'}}) }}
+							{{ form_widget(form.zip, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'Postcode*'}}) }}
+							{{ form_widget(form.city, {'attr':{'class':'inset_shadow','style':'display:block;width:100%;height:40px;margin-bottom:15px;padding:10px;font-size:16px;border:1px solid #ccc;outline:none;font-weight:300;','placeholder':'City*'}}) }}-->
+							<label class="no_selection" style="cursor:pointer;margin-bottom:15px;">
+								<input id="i_agree" type="checkbox" unchecked required>
+								<span style="display:inline-block;vertical-align:top;">Jeg er læst og accepteret <a href="javascript:void(0)">Vilkår og Betingelser</a></span>
+							</label>
+							<button name="_qf_page-0_next" type="submit" class="btn_gradient" style="display:block;width:100%;color:#fff;padding:10px;font-size:24px;font-weight:800;border:none;outline:none;border-radius:10px;">TILMELD</button>
+                                                        {{ form_widget(form._token) }}
+                                                        </form>
+						</div>
+					</div>
+				</div>
+				<div style="float:left;width:720px;">
+					<div style="width:600px;height:100px;margin:0px auto;padding-top:20px;">
+						<p style="font-size:38px;color:#fff;font-weight:600;text-align:center;line-height:36px;">iPhone 6S + Nike Fitness Tracker<br/><span style="font-size:16px;font-weight:200;">+ *3 dages adgang til happybetterlifestyle.com</span></p>
+						<p style="text-align:center;color:#fff;font-size:32px;font-weight:500;">Det første skridt mod en sundere livsstil<img src="{{ asset('bundles/app/nikeapple/en/img/prod2.png') }}" style="width:600px;height:auto;display:block;margin:0px auto;">
+						</p>
+
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div style="width:100%;background:#333;padding:10px 40px;;margin-top:460px;text-align:center;color:#fff;font-size:36px;font-weight:600;text-transform:uppercase;">
+			“ Get a Happy better lifestyle ”
+			<img src="{{ asset('bundles/app/nikeapple/en/img/waterdroplet.png') }}" style="display:inline-block;height:60px;width:auto;vertical-align:middle;">
+		</div>
+		<div style="width:100%;background:#aaa;">
+			<div style="width:1200px;margin:0px auto;color:#000;">
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Accept af abonnementsbetingelser</span>
+					<p style="font-size:12px;">Ved tilmelding accepterer du at Happybetterlifestyle.com må trække introduktionsprisen og efterfølgende den normale måneds pris på det tilknyttede kortnummer. Når du køber et abonnement, bliver det automatisk fornyet, indtil du selv opsiger det. (Via vores supportsystem). Du skal være fyldt 18 år og have en dansk bopælsadresse, for at have et gyldigt abonnement på Happybetterlifestyle.com. Velkomstgaven er uden ekstra omkostninger udover intro beløbet som er oplyst på den kampagnen, medmindre du ikke opsiger dit prøveabonnement inden de 3 dage er udløbet med 24 timers varsel.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Opkrævninger for abonnementservice</span>
+					<p style="font-size:12px;">Vores service koster 389,-/md. og opkræves forud. Alle de nævnte beløb er i DKK og inkl. dansk moms. Fortrydelsesretten følger jf. nærværende betingelser, som kan læses i afsnittet "Fortrydelsesret". Betalinger som en eller anden måde afvises vil blive forsøgt hævet igen senere op til en ny periode. Afvises betalingen 3 gange, opsiges abonnement automatisk, og adgangen til siden stoppes og evt. restance beløb vil blive tilsendt på alm. faktura til oplyste leveringsadresse. Det er alene kundens ansvar om der er dækning på kortet og at betalingen til siden ikke udebliver, hvis kunden ønsker sin fulde deltagelse, samt retten til evt. præmier. Kvitteringer for betalinger af medlemsskabet bliver altid sendt til den enhver tid opgivet email </p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Opsigelse af abonnement </span>
+					<p style="font-size:12px;">Du kan altid opsige dit abonnement på Happybetterlifestyle.com, ved at logge på siden og kontakte os igennem supportsystemet (.) Du skal som minimum opsige 24 timer før dit prøve abonnement og almindelige abonnement udløber ellers fornyes abonnementet endnu en månedsperiode. Hvis du har spørgsmål eller ønsker at opsige dit abonnement, skal du være velkommen til at kontakte os på support@Happybetterlifestyle.com alle hverdage 9.00-12.00, hvor Kundeservice sidder parat til at hjælpe dig med vejledning. E-mail til kundeservice har en behandlingstid på op til 72 timer i hverdage og weekend er lukket. Dog kan kundeservice ikke opsige abonnementet på kundernes vegne, uden gyldig tilsendt dokumentation i form af billede legitimation. Opsigelsen er krævet af kunden selv og følge de nøje anviste instrukser vedr. opsigelse. Det er kundens eget ansvar og pligt at opsige et aktivt abonnement på Happybetterlifestyle.com hvis abonnementet ikke længere ønskes af kunden.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Fortrydelsesret</span>
+					<p style="font-size:12px;">Dit abonnementskøb er der knyttet den lovbestemte 14 dages fortrydelsesret. Du kan kun fortryde, hvis du IKKE har taget dit abonnement i brug inden for 14 dage. Du tager dit abonnement / serviceydelse i brug, med det samme du har foretaget dit køb. Ønsker du at fortryde dit køb, kan du opsige efter 24 timer på .. Du vil derved ikke blive opkrævet introbeløbet. Da du har indgået en aftale om et abonnement, er der kun fortrydelsesret ved aftalens indgåelse og ikke i forbindelse med den løbende betaling for abonnementet.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Kortindehavers ansvars- og hæftelses forhold </span>
+					<p style="font-size:12px;">Tilmeldingen er bindende fra det sekund du logger på din profil og dermed aktiverer dit abonnement. Kortholderen er forpligtet til at betale det fulde beløb for hele den valgte abonnementsperiode og de efterfølgende abonnementshævninger, med mindre at korthaver i mellemtiden har opsagt abonnementet korrekt jf. betingelserne for opsigelse. Det er kortholders ansvar at der er dækning på det tilknyttede kort, som abonnementet trækkes på og i tilfælde af manglende dækning, svindel eller gentagne fejl, mistes retten til adgang, velkomstgaver og returret. Jf. betingelserne for "velkomstgaver" som kan læses i nærværende abonnementsbetingelser.</p>
+					<span style="font-size:16px;color:#fff;font-weight:600;">Ændringer</span>
+					<p style="font-size:12px;">Happybetterlifestyle.com, forbeholder sig enhver ret til at ændre vore gældende betingelser og vilkår. Hvis der bliver foretaget ændringer, vil de opdateret betingelser blive vist under "betingelser" på Happybetterlifestyle.com, og du vil herefter have retten til evt. opsigelse af dit abonnement/medlemsskab i 30 dage såfremt du er uenig i ændringen. Dette er dog kun gældende, hvis her er tale om væsentlige ændringer som har stor betydning for dit eksisterende aftale grundlag for dit abonnement på Happybetterlifestyle.com. Efter 30 dage vil ethvert nuværende medlem blive anset som værende forsat medlem og være underforstået med de nye ændringer. Der kan til hver en tid ændres adresseinformationer og abonnements oplysninger via sin bruger profil. Ændringerne vil herefter træde i kraft jf. gældende betingelser.</p>
+				</div>
+				<div style="float:left;width:400px;padding:10px;">
+					<span style="font-size:16px;color:#fff;font-weight:600;">Velkomstgaver</span>
+					<p style="font-size:12px;">Vi forventer en leveringstid på op til 30 dage, afhængig af efterspørgsel og produkt / gavekort m.m. i forbindelse med velkomstgaver. Vi vil forsøge at levere gaven indenfor denne periode, men der kan gå op længere tid. Har du stadig ikke modtaget din velkomstgave inden for vores leveringstid, bedes du kontakte vores kundeservice, så vi kan få tilsendt dig din velkomstgave. Hvis den pågældende velkomstgave er udsolgt, forsinket eller andet som gør at leveringstiden på 30 dage ikke kan overholdes, tilsendes en anden tilgængelig velkomstgave, som er på lager og den oprindelige velkomstgave udgår. Velkomstgaven bortfalder, hvis korrekt leveringsadresse ikke er indtastet på Happybetterlifestyle.com inden evt. opsigelse af abonnement og senest 7 dage efter tilmelding. Velkomstgaven bortfalder også hvis introduktions beløbet ikke er betalt i tide eller bliver afvist af betalingsudbyderen, eller hvis kunden er overgået til alm. betalings periode og betalinger afvises 1 eller flere gange - samt også hvis betalingen ikke kan gå igennem af andre årsager som betyder at vi ikke kan trække medlemskabet. Et eller flere brud på dette, medfører opsigelse af abonnement samt at velkomstgaven bortfalder. For at vi kan tilsende dig en gave skal vi være sikrer på at du er den du udgiver dig for, så det kræver at der indsendes dokumentation for adressen i form af kopi af pas eller sundhedskort + regning hvor ens navn og adresse tydeligt fremgår (maks. 3 måneder gammel). Derudover skal navnet brugt til betalingen passe med informationer tilsendt til os være det samme. Dette gøres for at sikre at vi tilsender gaven til den rette ejer og at der ikke er tale om misbrug af kreditkort /stjålet kreditkort. En sikkerhed for os og dig som kunde. Hvis ikke dette dokumentation er fyldestgørende eller du (Kunden) nægter at indsende dette bortfalder retten til gaven. Det er et krav for at modtage gaven. Dokumentationen skal sendes til kundeservice på support@Happybetterlifestyle.com. Vi forbeholder os rettes til at afvise dokumentation, såfremt der er tvivl om ægteheden.</p>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $('form').submit(function() {
+                        $('#i_agree').focus();
+                        return $('#i_agree').is(':checked');
+                    });
+                });
+                </script>
+	</body>
+</html>
