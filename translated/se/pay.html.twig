@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/css/custom.css') }}">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nike/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nike/js/jquery.countdown.js') }}"></script>
+
+                <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+                <script type="text/javascript">
+                Stripe.setPublishableKey('{{ campaign.stripePublic }}');
+
+                jQuery(function($) {
+                        $('#payment-form').submit(function(event) {
+                                var $form = $(this);
+                                $form.find('button').prop('disabled', true);
+                                Stripe.card.createToken($form, stripeResponseHandler);
+
+                                return false;
+                        });
+                });
+
+                function stripeResponseHandler(status, response) {
+                        var $form = $('#payment-form');
+
+                        if (response.error) {
+                                $form.find('#payment-errors').text(response.error.message);
+                                $form.find('#payment-errors').show();
+                                $form.find('button').prop('disabled', false);
+                        } else {
+                                var token = response.id;
+                                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                                $form.get(0).submit();
+                        }
+                };
+
+                </script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+        <body style="background:url({{ asset('bundles/app/nike/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div class="top_graybar">
+
+		</div>
+		<div class="mid_bluebg">
+			<div style="width:100%;max-width:1200px;margin:0px auto;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6 col-lg-push-6 text-center">
+							<div class="right_section_wrapper">
+							<span class="right_section_h1">Time limited offer</span>
+							<div id="defaultCountdown" class="countdown_wrapper"></div>
+							<p class="right_section_h2">iPhone 6S <br>+ Nike Fitness Tracker<br><span class="rs_h2_sub">+ *3 dagars gratisprov på happybetterlifestyle.com</span></p>
+							</div>
+							<p class="right_section_h3">Det första steget mot ett hälsosamt liv<img src="{{ asset('bundles/app/nike/img/prod2.png') }}" class="right_section_product">
+							</p>
+						</div>
+						<div class="col-lg-6 col-lg-pull-6">
+							<div class="box_shadow left_section_form">
+								<div class="box_shadow2 ls_form_prize">Endast<br>5 kr</div>
+								<div class="ls_form_header">
+									<p class="ls_form_h1">Sports package for just</p>
+								</div>
+								<div class="ls_form_wrapper">
+									<form action="" method="POST" id="payment-form">
+										<input id="name" value="" type="hidden">
+										<input id="address" value="" type="hidden">
+										<input id="city" value="" type="hidden">
+										<div class="ls_form_text">Vänligen fyll i kreditkortsinformation</div>
+                                                                                <div id="payment-errors" class="alert alert-danger payment-errors" style="display: none"></div>
+                                                                                {% for flash_message in app.session.flashbag.get('error') %}
+                                                                                <div id="p-errors" class="alert alert-danger payment-errors">
+                                                                                    {{ flash_message }}
+                                                                                </div>
+                                                                                {% endfor %}
+
+										<ul class="list-inline text-center">
+											<li><img src="{{ asset('bundles/app/nike/img/visa.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/mastercard.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/americanexpress.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/jcb.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/discover.png') }}" style="width:50px;height:auto;"></li>
+											<li><img src="{{ asset('bundles/app/nike/img/diners.png') }}" style="width:50px;height:auto;"></li>
+										</ul>
+										<div class="row">
+											<div class="col-md-12">
+												<span style="pointer-events:none;font-size:18px;">Kortnummer</span><br>
+												<input class="inset_shadow ls_form_textbox" size="20" data-stripe="number" type="text" placeholder="Detta är de 16 siffrorna i framsidan av kortet">
+											</div>
+											<div class="col-md-6">
+												<span style="pointer-events:none;font-size:18px;">Utgångsdatum</span><br>
+												<div class="row">
+													<div class="col-md-6">
+														<input class="inset_shadow ls_form_textbox" size="2" data-stripe="exp-month" placeholder="Månad">
+													</div>
+													<div class="col-md-6">
+														<input class="inset_shadow ls_form_textbox" size="4" data-stripe="exp-year" placeholder="År">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<span style="pointer-events:none;font-size:18px;">CVV2/CVC2</span><br>
+												<input class="inset_shadow ls_form_textbox" size="4" data-stripe="cvc" class="inset_shadow" type="text">
+												<p style="font-size:11px;line-height:12px;">(Detta är de 3 sista siffrorna som visas på baksidan av kortet)</p>
+											</div>
+											<div class="col-md-12">
+												<span style="pointer-events:none;font-size:18px;">Fullständigt namn på kortet</span><br>
+												<input class="inset_shadow ls_form_textbox" class="inset_shadow" type="text">
+											</div>
+										</div>
+										<button type="submit" class="btn_gradient" style="display:block;width:100%;color:#fff;padding:10px;font-size:24px;font-weight:800;border:none;outline:none;border-radius:10px;">Betala</button>
+									</form>
+									<!--<form action="credit_card.php" method="post">
+										<div class="ls_form_text">Please fill out delivery information</div>
+										<input class="inset_shadow ls_form_textbox" name="fname" type="text" placeholder="First Name*">
+										<input class="inset_shadow ls_form_textbox" name="lname" type="text" placeholder="Last Name*">
+										<input class="inset_shadow ls_form_textbox" name="email" type="text" placeholder="Email*">
+										<label class="no_selection ls_form_toc">
+											<input type="checkbox" checked="">I have read and accepted the <a href="javascript:void(0)">Terms &amp; conditions</a>
+										</label>
+										<button class="btn_gradient ls_form_submit">Send my *FREE package</button>
+										<input name="ip" type="hidden">
+										<input name="timestamp" type="hidden">
+									</form>-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="testimonial_section">
+				<div style="width:100%;max-width:1200px;margin:0px auto;">
+					<p class="testimonial_h1">
+						<span class="testimonial_h1_text">Customer Testimonials</span><br/>
+						<span class="testimonial_h1_sub">Hear from earlier participants and their experience with happybetterlife</span>
+					</p>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1_2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Brooke McCleary</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img1_2.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img2.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img3.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">324 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Brooke McCleary</a> We joined the "Say Yes, Just do it" campaign a few years ago. Also signed up through there at that time iPhone 3 campaign ha ha ha.. I still have it, can you believe it? My husband was actually the one who signed us up, he works alot and was missing quality time with the family. Now we join every year. Its a fun event ;)</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Gareth Steve</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img4.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img5.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img6.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">627 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Gareth Steve</a> The "Say Yes, Just do it" campaign have broad us more together as a family. And just the right tools to make activity fun, especially for the kids really makes the different! I won an iWatch, but it seems like my son have take owner ship over that one. He track all he´s running times, and with the Nike Fuel, he almost daily post he´s archievments!</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user3.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Charleen Beacker</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img7.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img8.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img9.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">283 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Charleen Beacker</a> We are not young anymore, but by "wogging" as we call it, we feel younger. And it gives us a special time wtih the grand kids. When we look around at the whole family togehter, those are the times worth remebering. Thank you "Say yes, Just do it" I got one of those Nike Fitness Trackers and when ever we are "wogging" I have to admit that we proudly share it on thet "The Facebook"</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Zoe Nell Lauritz</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img10.png') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img11.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img12.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">507 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Zoe Nell Lauritz</a> Staying healthy is alfa omega for me, I have a highly stressful job and are alone women in a mans world. Actually joined, "Say Yes, Just do it" cause Its so hard to meet people when you work as much as I do. And should the man of the dream with a good carriere and healthy economy and perferly not more than one kid come along I might accidently stumble into him ;) Its loney on the top..</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="testimonial_h1">
+							<span class="testimonial_h1_text">Our Team of Experts</span>
+						</p>
+						<div class="row text-center">
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team1.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Joseph Vaugn</b><br/>
+									Sports Therapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team2.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Diane Reynolds</b><br/>
+									Nutritionist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team3.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Leonardo Coleman</b><br/>
+									Physiotherapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team4.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Eleanor Griffin</b><br/>
+									Nutritional Therapist
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="middle_runners">
+
+				</div>
+				<div class="middle_grayarea">
+					“ Get a Happy better lifestyle ”
+					<img src="{{ asset('bundles/app/nike/img/waterdroplet.png') }}">
+				</div>
+				<div class="bottom_termsandconditions">
+					<div style="width:100%;max-width:1200px;margin:0px auto;color:#000;">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-4">
+									<span class="toc_title">Godkännande av prenumerationsvillkoren</span>
+									<p class="toc_details">Genom att registrera dig godkänner du att happybetterlifestyle.com kommer att debitera dig för ett introduktionspris och därutöver den normala månadskostnaden från det associerade kortnumret. När du köper en prenumeration kommer denna automatiskt att förnyas fram till dess att du säger upp den. (genom vårt supportsystem). Du måste vara 18 år eller äldre och ha en (svensk) bostadsadress för att få ha en giltig prenumeration på happybetterlifestyle.com. Välkomstgåvan innebär ingen extra kostnad utöver det introduktionsbelopp som anges för kampanjerna, om du inte säger upp din provperiod inom de 3 dagarna minst 24 timmar i förväg. </p>
+									<span class="toc_title">Avgifter för prenumerationstjänsten</span>
+									<p class="toc_details">Avgifter för prenumerationstjänstenVåra servicekostnader är 379 kr/månad. Detta belopp debiteras i förväg. Alla belopp är i (svenska kronor) och inklusive moms. Uppsägningsrättigheterna följer de regler och villkor som beskrivs i avsnittet gällande uppsägningar. Dessa villkor kan läsas i ”Returer”. Om betalningar misslyckas eller avfärdas för att täcka prenumerationskostnaden tre gånger kommer prenumerationen automatiskt avslutas, och all tillgång till tjänsten stoppas. Försenade belopp krävs via faktura till leveransadressen som du uppger. Det är helt och hållet kundens skyldighet att se till att tillräckliga medel finns på kortet och att månadskostnaden kan täckas. Om kunden vill ha full insyn och kontroll över priser skickas kvitton på medlemskapsbetalningarna alltid till den e-postadress som uppgavs vid registreringen. </p>
+									<span class="toc_title">Uppsägning av prenumeration</span>
+									<p class="toc_details">Du kan alltid säga upp din prenumeration på happybetterlifestyle.com genom att logga in på sidan och kontakta oss via support til support@happybetterlifestyle.com (). Du måste avsluta din prenumeration minst 24 timmar före din provprenumeration upphör, eller när den ordinarie prenumerationen upphör, annars förnyar vi din prenumeration för ytterligare en månad. Om du har några frågor eller vill avsluta din prenumeration, vänligen kontakta oss på support@happybetterlifestyle.com veckodagar 9:00 till 12:00, då vår kundtjänst finns tillhands för att hjälpa dig med dina ärenden. E-post till kundtjänst har en svarstid på upp till 72 timmar under veckodagar och på helgerna är det stängt. Kundtjänst avslutar emellertid inga prenumerationer åt kunder utan giltig dokumentation i form av fotoidentifikation. Uppsägning krävs av kunden och instruktionerna gällande detta förfarande ska följas noggrant. Det är kundens ansvar och skyldighet att avsluta en aktiv prenumeration på vipmemberships.info om prenumerationen inte längre önskas av kunden.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Returer</span>
+									<p class="toc_details">Ditt prenumerationsköp omfattas av 14 dagars öppet köp. Du kan endast avbryta köpet om du INTE börjar utnyttja din prenumeration inom 14 dagar. Din prenumeration/tjänst aktiveras omedelbart när du gör ditt köp. Om du vill avbryta köpet kan du göra detta endast efter 24 timmar på grund av tekniska omständigheter. Du kommer inte att debiteras introduktionsbeloppet. När du har ingått ett prenumerationsavtal gäller endast rätten att avbryta provperioden och inte den pågående betalningen för prenumerationen. </p>
+									<span class="toc_title">Kortinnehavarens ansvarsförhållanden</span>
+									<p class="toc_details">Registreringen är bindande från det ögonblick du registrerar och aktiverar din prenumeration. Du aktiverar prenumerationen samtidigt som introduktionspriset betalas. Kortinnehavaren är skyldig att betala hela beloppet för hela den valda prenumerationsperioden och regelbundna prenumerationsdragningar, om inte kortinnehavaren sagt upp prenumerationen på rätt sätt. Villkor för uppsägning. Det är kortinnehavarens skyldighet att se till att tillräckligt med medel finns på det anslutna kreditkortet som prenumerationen är kopplad till. I händelse av otillräckliga medel, bedrägeri eller upprepade misstag, förlorar prenumeranten rätten till att använda webbplatsen, välkomstgåvorna och retur. Se villkoren för ”välkomstgåvor” som kan läsas i denna prenumerationstjänst.</p>
+									<span class="toc_title">Ändringar</span>
+									<p class="toc_details">happybetterlifestyle.com innehar alla rättigheter till att ändra våra nuvarande regler och villkor. Om några ändringar görs kommer uppdaterade villkor visas under ”villkor” på happybetterlifestyle.com, och du har då rätten att om så önskas avsluta din prenumeration/ditt medlemskap inom 30 dagar om du inte samtycker till ändringarna. Detta är emellertid endast tillämpligt om ändringen på ett betydande sätt påverkar ditt nuvarande avtal för din prenumeration på happybetterlifestyle.com. Efter 30 dagar betraktas existerande medlemmar som fortsatta medlemmar och att dessa samtycker till de nya ändringarna. Adressinformation och prenumerationsinformation kan närsomhelst ändras genom supportsystemet. Ändringarna kommer att tillämpas omedelbart.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Godkännande av prenumerationsvillkoren</span>
+									<p class="toc_details">Genom att registrera dig godkänner du att happybetterlifestyle.com kommer att debitera dig för ett introduktionspris och därutöver den normala månadskostnaden från det associerade kortnumret. När du köper en prenumeration kommer denna automatiskt att förnyas fram till dess att du säger upp den. (genom vårt supportsystem). Du måste vara 18 år eller äldre och ha en (svensk) bostadsadress för att få ha en giltig prenumeration på happybetterlifestyle.com. Välkomstgåvan innebär ingen extra kostnad utöver det introduktionsbelopp som anges för kampanjerna, om du inte säger upp din provperiod inom de 3 dagarna minst 24 timmar i förväg. </p>
+									<span class="toc_title">Välkomstgåvor</span>
+									<p class="toc_details">Vi räknar med en leveranstid på upp till 30 dagar, beroende på efterfrågan och produkt-/gåvocertifikat etc. Vi kommer att försöka leverera gåvan inom denna period men det kan ta längre tid. Om du fortfarande inte fått din välkomstgåva inom vår leveranstid, vänligen kontakta vår kundtjänst så att vi kan skicka din välkomstgåva. Om välkomstgåvan är slut på lager, försenad eller på annat sätt resulterar i en leveranstid längre än 30 dagar, kommer vi att skicka en annan välkomstgåva, som finns på lager och därmed raderas den ursprungliga välkomstgåvan. Välkomstgåvan ogiltigförklaras om korrekt leveransadress inte tillhandahålles happybetterlifestyle.com före uppsägningen/den avbrutna prenumerationen och ej längre än 7 dagar efter registreringen. Välkomstgåvan förfaller även om introduktionsbeloppet inte betalas i tid eller om kreditkortet avböjs av betalningsleverantören, eller om kunden bytt till normal prenumerationsperiod och betalningarna avböjs en eller fler gånger – och även om betalning inte kan genomföras av någon annan anledning som gör betalningen omöjlig. Ett eller flera brott mot dessa villkor resulterar i att prenumerationen stoppas och rätten till välkomstgåvan förfaller. Innan gåvan skickas till dig måste vi se till att du är den du utger dig för att vara, så det krävs ett uppvisande av bevis på adress med en kopia på pass eller ID-kort + en faktura där ditt namn och din adress tydligt står (max 3 månader gammal). Dessutom måste namnet som används för att betala prenumerationen och/eller provperioden matcha det namn som finns på adressen för att gåvan ska skickas. Detta är för att kunna garantera att vi levererar gåvan till den rättmätige ägaren och att inget missbruk av kreditkort/stulet kreditkort använts. Om denna dokumentation ej är komplett eller om du (kunden) vägrar att tillhandahålla den, förfaller rätten till gåvan. Detta är ett krav för att få gåvan. Dokumentationen måste skickas till kundtjänst på support@happybetterlifestyle.com. Vi reserverar oss rätten till att avböja dokument om tvivel råder kring dess äkthet.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function(){
+				var today = new Date();
+				var tomorrow = new Date();
+				tomorrow.setDate(today.getDate()+2);
+				tomorrow.setHours(today.getDate()+14);
+				tomorrow.setMinutes(today.getDate()+60);
+				$('#defaultCountdown').countdown({until: tomorrow});
+			});
+		</script>
+	</body>
+</html>
