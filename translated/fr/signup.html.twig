@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/css/custom.css') }}">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nike/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nike/js/jquery.countdown.js') }}"></script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+        <body style="background:url({{ asset('bundles/app/nike/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div class="top_graybar">
+
+		</div>
+		<div class="mid_bluebg">
+			<div style="width:100%;max-width:1200px;margin:0px auto;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-6 col-lg-push-6 text-center">
+							<div class="right_section_wrapper">
+							<span class="right_section_h1">TIME LIMITED OFFER</span>
+							<div id="defaultCountdown" class="countdown_wrapper"></div>
+							<p class="right_section_h2">iPhone 6S <br>+ Nike Fitness Tracker<br><span class="rs_h2_sub">+ + *3days free trial to happybetterlifestyle.com</span></p>
+							</div>
+							<p class="right_section_h3">The first step to a healthy life<img src="{{ asset('bundles/app/nike/img/prod2.png') }}" class="right_section_product">
+							</p>
+						</div>
+						<div class="col-lg-6 col-lg-pull-6 text-center">
+							<div class="box_shadow left_section_form">
+								<div class="box_shadow2 ls_form_prize">Only<br>€1</div>
+								<div class="ls_form_header">
+									<p class="ls_form_h1">Sports package for just</p>
+								</div>
+								<div class="ls_form_wrapper">
+                                                                        {{ form_start(form) }}
+
+										<div class="ls_form_text">Please fill out delivery information</div>
+                                                                                {{ form_widget(form.firstName, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'First Name*'}}) }}
+                                                                                {{ form_widget(form.lastName, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'Last Name*'}}) }}
+                                                                                {{ form_widget(form.email, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'Please enter your email here*'}}) }}
+                                                                                <!--
+                                                                                {{ form_widget(form.phone, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'Mobile*'}}) }}
+                                                                                {{ form_widget(form.street, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'Address*'}}) }}
+                                                                                {{ form_widget(form.zip, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'Postcode*'}}) }}
+                                                                                {{ form_widget(form.city, {'attr':{'class':'inset_shadow ls_form_textbox','placeholder':'City*'}}) }}
+                                                                                -->
+
+										<label class="no_selection ls_form_toc">
+											<input type="checkbox" required="required">I have read and accepted the <a href="javascript:void(0)">Terms &amp; conditions</a>
+										</label>
+										<button class="btn_gradient ls_form_submit">Send my *FREE package</button>
+										<input name="ip" type="hidden">
+										<input name="timestamp" type="hidden">
+                                                                                {{ form_widget(form._token) }}
+									</form>
+									<div style="padding:10px 0px;text-align:left;">
+										<div class="row">
+											<div class="col-sm-3">
+											<img src="http://d2r8jqmejizzox.cloudfront.net/d8082e86/624a53dd/1451203803-1548020-118x117-review1.png') }}" style="display:block;width:100%;max-width:150px;height:auto;margin:0px auto;">
+											</div>
+											<div class="col-sm-9">
+												<p>"<b>Thank you so much!! Got my iPhone 2 weeks ago.</b>" Just wanna say that it was more than a welcomed supprise! Im so happy, can´t believe it.</p>
+												<p>- Kate McCarthy - Quebec, Canada</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="testimonial_section">
+				<div style="width:100%;max-width:1200px;margin:0px auto;">
+					<p class="testimonial_h1">
+						<span class="testimonial_h1_text">Customer Testimonials</span><br/>
+						<span class="testimonial_h1_sub">Hear from earlier participants and their experience with happybetterlife</span>
+					</p>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1_2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Brooke McCleary</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img1_2.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img2.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img3.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">324 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Brooke McCleary</a> We joined the "Say Yes, Just do it" campaign a few years ago. Also signed up through there at that time iPhone 3 campaign ha ha ha.. I still have it, can you believe it? My husband was actually the one who signed us up, he works alot and was missing quality time with the family. Now we join every year. Its a fun event ;)</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user2.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Gareth Steve</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img4.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img5.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img6.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">627 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Gareth Steve</a> The "Say Yes, Just do it" campaign have broad us more together as a family. And just the right tools to make activity fun, especially for the kids really makes the different! I won an iWatch, but it seems like my son have take owner ship over that one. He track all he´s running times, and with the Nike Fuel, he almost daily post he´s archievments!</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user3.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Charleen Beacker</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img7.jpg') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img8.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img9.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">283 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Charleen Beacker</a> We are not young anymore, but by "wogging" as we call it, we feel younger. And it gives us a special time wtih the grand kids. When we look around at the whole family togehter, those are the times worth remebering. Thank you "Say yes, Just do it" I got one of those Nike Fitness Trackers and when ever we are "wogging" I have to admit that we proudly share it on thet "The Facebook"</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="testimonial_wrapper">
+									<div class="testimonial_header">Photo</div>
+									<div class="testimonial_dp">
+										<img src="{{ asset('bundles/app/nike/img/gallery/user1.jpg') }}">
+									</div>
+									<div class="testimonial_username">
+										<a href="javascript:void(0)">Zoe Nell Lauritz</a>
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img10.png') }}">
+									</div>
+									<div class="testimonial_img_sm">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img11.jpg') }}">
+									</div>
+									<div class="testimonial_img_lg">
+										<img src="{{ asset('bundles/app/nike/img/gallery/img12.jpg') }}">
+									</div>
+									<div class="testimonial_content">
+										<div class="content_block"><i class="fa fa-heart"></i><a href="javascript:void(0)">507 likes</a></div>
+										<div class="content_block"><i class="fa fa-comment"></i><a href="javascript:void(0)">Zoe Nell Lauritz</a> Staying healthy is alfa omega for me, I have a highly stressful job and are alone women in a mans world. Actually joined, "Say Yes, Just do it" cause Its so hard to meet people when you work as much as I do. And should the man of the dream with a good carriere and healthy economy and perferly not more than one kid come along I might accidently stumble into him ;) Its loney on the top..</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<p class="testimonial_h1">
+							<span class="testimonial_h1_text">Our Team of Experts</span>
+						</p>
+						<div class="row text-center">
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team1.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Joseph Vaugn</b><br/>
+									Sports Therapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team2.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Diane Reynolds</b><br/>
+									Nutritionist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team3.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Leonardo Coleman</b><br/>
+									Physiotherapist
+								</p>
+							</div>
+							<div class="col-md-3">
+								<img src="{{ asset('bundles/app/nike/img/team4.jpg') }}" class="img-circle img-responsive center-block">
+								<p style="font-size:18px;padding:5px;">
+									<b>Eleanor Griffin</b><br/>
+									Nutritional Therapist
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="middle_runners">
+
+				</div>
+				<div class="middle_grayarea">
+					“ GET A HAPPY BETTER LIFESTYLE ”
+					<img src="{{ asset('bundles/app/nike/img/waterdroplet.png') }}">
+				</div>
+				<div class="bottom_termsandconditions">
+					<div style="width:100%;max-width:1200px;margin:0px auto;color:#000;">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-4">
+									<span class="toc_title">Acceptation des conditions générales d'abonnement</span>
+									<p class="toc_details">En vous inscrivant, vous acceptez que happybetterlifestyle.com débite les frais d'inscription et d'abonnement mensuels sur la carte bancaire associée à l'abonnement. Une fois que vous aurez souscrit un abonnement, celui-ci sera reconduit automatiquement jusqu'à ce que vous l'annuliez en envoyant un e-mail à support@happybetterlifestyle.com. Vous devez être âgé d'au moins 18 ans et résider dans le pays pour lequel vous vous inscrivez pour que votre abonnement à happybetterlifestyle.com soit considéré comme valide. Hormis les frais d'inscription indiqués dans les offres de promotion, le cadeau de bienvenue est offert sans frais supplémentaires, à condition de ne pas annuler votre abonnement d'essai durant sa période de 3 jours et que vous respectiez le préavis d'annulation de 24 heures.</p>
+									<span class="toc_title">Frais du service d'abonnement</span>
+									<p class="toc_details">Notre service coûte 55€ par mois, payables à l'avance. Tous les coûts mentionnés ci-dessus sont indiqués en couronnes danoises et comprennent la TVA euro. Le droit d'annulation est fourni conformément aux présentes conditions générales et peut être consulté dans la section « Droit d'annulation ». En cas de refus de paiement pour quelque motif que ce soit, nous tenterons de débiter à nouveau votre carte à une date ultérieure. Si le paiement est refusé par 3 fois, l'abonnement sera automatiquement annulé à compter de cette date et l'accès au site sera bloqué. Une facture sera envoyée à l'adresse de livraison fournie pour le règlement des frais éventuels restés impayés. Il est de la responsabilité du client de veiller à ce que des fonds suffisants soient disponibles sur la carte et que les paiements soient effectués au site web en temps opportuns, si le client souhaite bénéficier d'un accès complet au site ainsi que du droit de recevoir les prix éventuels. Les reçus du paiement des frais d'abonnement sont disponibles à tout moment et peuvent être imprimés depuis l'e-mail qui vous a été envoyé.</p>
+									<span class="toc_title">Annulation d'un abonnement</span>
+									<p class="toc_details">Vous pouvez annuler votre abonnement avec happybetterlifestyle.com à tout moment en envoyant un e-mail à support@happybetterlifestyle.com. Vous ne pouvez pas annuler un abonnement dans les 24 heures suivant la création de votre compte. L'annulation doit être faite au moins 24 heures avant la fin de votre période d'essai ou de votre abonnement normal. Dans le cas contraire, l'abonnement sera renouvelé pour un mois supplémentaire. Si vous avez des questions ou souhaitez annuler votre abonnement, nous vous invitons à nous contacter à l'adresse support@happybetterlifestyle.com pendant les heures ouvrées du lundi au vendredi, de 10 h à 16 h, lorsque notre personnel du service à la clientèle sera prêt à vous aider et à vous conseiller. Le délai de traitement habituel pour les e-mails envoyés au service à la clientèle est de 48 heures durant les jours ouvrés. Le service à la clientèle est fermé les week-ends. Le service à la clientèle ne peut cependant pas annuler un abonnement au nom du client, et ne peut que fournir de l'aide sur la procédure d'annulation d'un abonnement et autres sujets similaires. L'annulation doit être effectuée par le client lui-même en suivant soigneusement les consignes y afférentes. Il est de la seule responsabilité et obligation du client de résilier son abonnement actif sur happybetterlifestyle.com s'il ne souhaite plus le conserver.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Droit d'annulation</span>
+									<p class="toc_details">Le droit d'annulation légalement requis de 14 jours est applicable à l'achat de votre abonnement. Votre droit d'annulation n'est valide que si vous N'AVEZ PAS commencé à utiliser votre abonnement durant ces 14 jours. Votre abonnement ou vos services seront mis à disposition immédiatement après que vous avez effectué votre achat. Si vous souhaitez annuler votre achat, vous pouvez le faire après un délai de 24 heures par e-mail à support@happybetterlifestyle.com. Vous ne serez ainsi pas facturé des frais d'inscription. Comme vous avez accepté un contrat d'abonnement, le droit d'annulation s'applique à l'entrée en vigueur de l'abonnement seulement et non pas au paiement régulier des frais d'abonnement.</p>
+									<span class="toc_title">Responsabilité du titulaire de la carte et conditions de prélèvement</span>
+									<p class="toc_details">L'enregistrement est obligatoire à partir du moment où vous vous connectez sur votre profil et que vous activez votre abonnement. Le détenteur de la carte est tenu de payer le montant intégral pour l'ensemble de la période d'abonnement sélectionnée, ainsi que des abonnements consécutifs, à moins qu'il n'ait entre temps annulé son abonnement conformément aux conditions d'annulation. Il est de la responsabilité du détenteur de la carte de s'assurer qu'il existe des fonds suffisants sur la carte de crédit ou de débit sur laquelle l'abonnement est prélevé. En cas d'insuffisance de fonds, de suspicion de fraude ou d'erreurs répétées, l'abonné perdra son droit à accéder au site, ses cadeaux de bienvenue et son droit de retour. Cette clause est conforme aux conditions générales relatives aux « cadeaux de bienvenue » disponible aux présentes conditions générales d'abonnement.</p>
+									<span class="toc_title">Modification des présentes conditions générales</span>
+									<p class="toc_details">happybetterlifestyle.com se réserve le droit d'apporter des modifications aux présentes conditions générales, à n'importe quel moment. Si des modifications sont apportées, les conditions générales modifiées seront affichées dans la section « Conditions générales » sur happybetterlifestyle.com, et vous aurez alors la possibilité d'annuler votre abonnement/adhésion pendant une période de 30 jours, en cas de désaccord avec les modifications. Cette offre n'est cependant valable qu'en cas de modifications importantes affectant directement la base de votre contrat d'abonnement actuel à happybetterlifestyle.com. À l'issue du délai de 30 jours, tous les membres actuels seront considérés comme membres actifs ayant compris et accepté les nouvelles modifications. Vous pouvez modifier votre adresse ou les détails de l'abonnement à tout moment via votre profil d'utilisateur. Les modifications prendront alors effet conformément aux modalités existantes.</p>
+								</div>
+								<div class="col-md-4">
+									<span class="toc_title">Acceptance of subscription conditions</span>
+									<p class="toc_details">By signing up you agree to happybetterlife.com must pull introductory price and subsequently the normal monthly cost of the associated card number. When you purchase a subscription, it is automatically renewed until you cancel it. (Via our support system). You must be 18 or older and have a Danish residence address, to have a valid subscription to happybetterlife.com. Welcome gift is no extra cost beyond intro amount as stated on the campaign, unless you do not cancel your trial within the three days has expired with 24 hours notice.</p>
+									<span class="toc_title">Cadeaux de bienvenue</span>
+									<p class="toc_details">Nous prévoyons un délai de livraison allant jusqu'à 30 jours, en fonction de la demande et des produits/cartes-cadeaux, etc. en relation avec les cadeaux de bienvenue. Nous nous efforcerons toujours de livrer le cadeau dans cette période, mais ce n'est pas toujours possible. Si vous n'avez toujours pas reçu votre cadeau de bienvenue à l'expiration du délai de livraison spécifié, veuillez contacter notre service à la clientèle afin que nous vous renvoyions votre cadeau de bienvenue. Si le cadeau de bienvenue que vous avez demandé est en rupture de stock, subit des retards ou qu'il nous est autrement impossible de respecter la période de livraison de 30 jours, un autre cadeau de bienvenue disponible en stock vous sera envoyé au lieu du produit d'origine. Le cadeau de bienvenue sera annulé si l'adresse de livraison correcte n'est pas enregistrée sur nuevascalendarios.com avant l'annulation de l'abonnement et après la période d'essai de 3 jours. Le cadeau de bienvenue sera aussi annulé si les frais d'inscription ne sont pas réglés à temps ou s'ils sont annulés par l'opérateur bancaire, ou bien si le client a dépassé la période de paiement habituelle et que celui-ci est rejeté une ou plusieurs fois, ou encore si le paiement ne peut pas être prélevé pour d'autres motifs nous empêchant de recevoir les fonds correspondants. Toute infraction de ce type entraînera l'annulation de l'abonnement et du cadeau de bienvenue. Avant que nous puissions vous envoyer un cadeau, nous devons nous assurer que vous êtes bien la personne que vous déclarez être, ce qui exige que vous nous envoyiez la documentation relative à l'adresse sous forme de copie de votre passeport ou de votre carte d'assurance santé + une facture indiquant clairement votre nom et votre adresse (émise au cours des 3 derniers mois). En outre, le nom utilisé pour le paiement doit être le même que celui indiqué dans les informations qui nous sont transmises. Ceci vise à nous assurer que nous envoyons le cadeau de bienvenue au titulaire correct et à prévenir l'utilisation frauduleuse des cartes de crédit. - une précaution de sécurité pour nous comme pour vous en tant que client. Si cette documentation n'est pas complète ou que vous (le Client) refusez de nous l'envoyer, le droit de recevoir le cadeau sera nul et non avenu. IL s'agit d'une condition indispensable à la réception du cadeau. La documentation doit être envoyée au service à la clientèle à l'adresse support@nuevascalendarios.com. Nous nous réservons le droit de rejeter la documentation en cas de doute quant à son authenticité. Si le titulaire d'une carte effectue une refacturation des paiements, celui-ci perdra automatiquement le droit à tout remboursement des paiements passés, ainsi qu'au cadeau de bienvenue correspondant, et sera aussi exclu de manière permanente du site web et des autres services d'abonnement détenus par Nuevas Calendarios SL. Pour recevoir les cadeaux de bienvenue, il est stipulé que toutes les règles et conditions doivent être respectées et que tous les paiements ont été effectués de manière légitime sans l'utilisation de cartes non valides ou volées ou toute autre circonstance qui pourrait entraîner la non-conformité aux conditions générales d'abonnement. Dans le cas où les conditions d'abonnement ne sont pas respectées, le droit au remboursement ainsi qu'au cadeau de bienvenue sera annulé.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(function () {
+				var today = new Date();
+				var tomorrow = new Date();
+				tomorrow.setDate(today.getDate()+2);
+				tomorrow.setHours(today.getDate()+14);
+				tomorrow.setMinutes(today.getDate()+60);
+				$('#defaultCountdown').countdown({until: tomorrow});
+			});
+		</script>
+	</body>
+</html>
