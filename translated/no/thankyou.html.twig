@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/css/custom.css') }}">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nike/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nike/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nike/js/jquery.countdown.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('bundles/app/nike/js/FeedEk.js') }}"></script>
+                {% include "theme/ga.html.twig" %}
+	</head>
+        <body style="background:url({{ asset('bundles/app/nike/img/bg.png') }});background-attachment:fixed;font-family: 'Source Sans Pro', sans-serif;">
+		<div class="top_graybar">
+
+		</div>
+		<div class="mid_bluebg">
+			<div style="width:100%;max-width:1200px;margin:0px auto;">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12 text-center">
+							<div class="box_shadow left_section_thankyou">
+								<div class="ls_thankyou_header">
+									<p class="ls_form_h1">Takk <?php echo $_GET['name']; ?><br/>
+									<p class="ls_form_h2">Din ordre er mottatt og blir behandlet.<br/>
+									Du vil motta en e-post med ytterliggere opplysninger.</p>
+									</p>
+								</div>
+								<div class="ls_form_wrapper ls_thankyou_height text-left">
+									<p class="thankyou_section_h1 text-center">Today's random fact that might surprise you:</p>
+									<p><b style="font-size:18px;">Being optimistic can save your life</b><br/>
+									We all know that thinking positively can have a great impact on your happiness, however research has also revealed that being an optimist can help you live longer. Research findings published in the European Heart Journal reveal that optimistic people are less likely to suffer from heart disease, while researchers at Duke University Medical Center found that heart patients who were more optimistic about their treatment lived longer than those who were not.
+									</p>
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-md-4">
+												<div class="box_shadowpurple thankyou_box box_purple">
+													<div class="thankyou_box_title">Horoscope and astrology</div>
+													<div class="thankyou_box_content">
+														<a href="javascript:void(0)" class="horoscope"><img src="{{ asset('bundles/app/nike/img/horoscope.jpg') }}"></a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="box_shadowgreen thankyou_box box_green">
+													<div class="thankyou_box_title">Health and lifestyle</div>
+													<div class="thankyou_box_content">
+														<a href="javascript:void(0)" class="health"><img src="{{ asset('bundles/app/nike/img/health.png') }}"></a>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-4">
+												<div class="box_shadowpink thankyou_box box_pink">
+													<div class="thankyou_box_title">Shopping and fashion</div>
+													<div class="thankyou_box_content">
+														<a href="javascript:void(0)" class="shopping"><img src="{{ asset('bundles/app/nike/img/fashion.png') }}"></a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="horoscope" class="modal fade" tabindex="-1" role="dialog">
+			<div style="width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:center;">
+				<div style="width:500px;min-height:500px;margin:0px auto;padding:10px;background:#fff;">
+					<img src="http://www.astrozone.co.za/images/header/header-main.jpg" style="width:100%;height:auto;">
+					<div id="divRss1" style="width:100%;height:400px;overflow:auto;margin:10px 0px;">
+
+					</div>
+					<button style="width:100%;padding:10px;color:#fff;background:#a112b6;border:none;font-size:18px;font-weight:700;" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+		<div id="health" class="modal fade" tabindex="-1" role="dialog">
+			<div style="width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:center;">
+				<div style="width:500px;min-height:500px;margin:0px auto;padding:10px;background:#fff;">
+					<img src="http://www.canfar.ca/wp-content/uploads/2015/05/cropped-HeaderLe.png') }}" style="width:100%;height:auto;">
+					<div id="divRss2" style="width:100%;height:400px;overflow:auto;margin:10px 0px;">
+
+					</div>
+					<button style="width:100%;padding:10px;color:#fff;background:#41b618;border:none;font-size:18px;font-weight:700;" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+		<div id="shopping" class="modal fade" tabindex="-1" role="dialog">
+			<div style="width:100%;min-height:100vh;display:flex;flex-direction:column;justify-content:center;">
+				<div style="width:500px;min-height:500px;margin:0px auto;padding:10px;background:#fff;">
+					<img src="http://newsandshopping.com/wp-content/uploads/2013/01/Shopping-deals-header1.jpg') }}" style="width:100%;height:auto;">
+					<div id="divRss3" style="width:100%;height:400px;overflow:auto;margin:10px 0px;">
+
+					</div>
+					<button style="width:100%;padding:10px;color:#fff;background:#db168a;border:none;font-size:18px;font-weight:700;" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+			<script>
+			$(document).on("ready",function(){
+				$('#divRss1').FeedEk({
+				FeedUrl: 'http://www.astrology.com/us/offsite/rss/weekly-overview.aspx',
+				MaxCount: 12,
+				DateFormat: 'L',
+				DateFormatLang:'en'
+				});
+
+				$('#divRss2').FeedEk({
+				FeedUrl: 'http://feeds.glamour.com/glamour/health_fitness',
+				MaxCount: 12,
+				DateFormat: 'L',
+				DateFormatLang:'en'
+				});
+
+				$('#divRss3').FeedEk({
+				FeedUrl: 'http://feeds.glamour.com/glamour/all_fashion',
+				MaxCount: 12,
+				DateFormat: 'L',
+				DateFormatLang:'en'
+				});
+
+			});
+
+			$(document).on("click",".horoscope",function(){
+				$("#horoscope").modal("show");
+				$("#horoscope").find(".feedEkList")
+				.css("background","url('img/bg_horoscope.jpg')")
+				.css("background-position","top left")
+				.css("background-repeat","repeat-y")
+				.css("padding-left","65px");
+			});
+			$(document).on("click",".health",function(){
+				$("#health").modal("show");
+			});
+			$(document).on("click",".shopping",function(){
+				$("#shopping").modal("show");
+			});
+
+			</script>
+		</div>
+	</body>
+</html>

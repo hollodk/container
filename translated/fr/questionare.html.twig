@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Nike Apple</title>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- Optional: Include the jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+                <!-- <link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/css/custom.css') }}"> -->
+		<link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/fonts.css') }}">
+		<link rel="stylesheet" href="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700,900,200,200italic,300italic,400italic,600,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.plugin.js') }}"></script>
+		<script src="{{ asset('bundles/app/nikeapple/en/js/jquery.countdown.js') }}"></script>
+		<style>
+		.box_shadow{
+			-webkit-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			-moz-box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+			box-shadow: 2px 2px 18px 0px rgba(0,0,0,0.75);
+		}
+		.box_shadow2{
+			-webkit-box-shadow: 5px 5px 5px -4px rgba(0,0,0,0.75);
+			-moz-box-shadow: 5px 5px 5px -4px rgba(0,0,0,0.75);
+			box-shadow: 5px 5px 5px -4px rgba(0,0,0,0.75);
+		}
+		.no_selection{
+			-webkit-user-select: none; /* webkit (safari, chrome) browsers */
+			-moz-user-select: none; /* mozilla browsers */
+			-khtml-user-select: none; /* webkit (konqueror) browsers */
+			-ms-user-select: none; /* IE10+ */
+		}
+		.btn_gradient{
+			/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#171a1f+0,2a2b30+100 */
+			background: rgb(23,26,31); /* Old browsers */
+			background: -moz-linear-gradient(top,  rgba(23,26,31,1) 0%, rgba(42,43,48,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top,  rgba(23,26,31,1) 0%,rgba(42,43,48,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom,  rgba(23,26,31,1) 0%,rgba(42,43,48,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#171a1f', endColorstr='#2a2b30',GradientType=0 ); /* IE6-9 */
+			cursor:pointer;
+		}
+
+		.btn_gradient img{
+			opacity:.5;
+		}
+
+		.btn_gradient:hover,
+		.btn_gradient.active{
+			background:#0d1114;
+		}
+		.btn_gradient:hover img,
+		.btn_gradient.active img{
+			opacity:.9;
+		}
+
+		.btn_blue{
+			background:#2f5f87;
+			cursor:pointer;
+		}
+
+		.btn_blue img{
+			opacity:.5;
+		}
+
+		.btn_blue:hover img{
+			opacity:.9;
+		}
+		body{
+			background:url('{{ asset('bundles/app/nikeapple/en/img/bg_questionare4.jpg') }}');
+			background-size:1920px 1080px;
+			background-position:bottom left;
+			font-family: 'Source Sans Pro', sans-serif;
+		}
+		</style>
+                {% include "theme/ga.html.twig" %}
+
+	</head>
+	<body>
+		<input type="hidden" id="user_name" value="">
+		<div class="box_shadow" style="width:100%;min-height:100vh;max-width:720px;margin:0px auto;background:#e7e7e7;padding-bottom:65px;position:relative;">
+			<div style="padding:15px;width:100%;height:calc(100vh - 65px);overflow:auto;">
+				<div class="box_shadow2" style="width:100%;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:10px;">
+					<div style="height:50px;width:calc(100% + 3px);background:#2f5f87;text-align:center;font-size:32px;line-height:55px;color:#fff;font-family:'Conv_billabong',Sans-Serif;margin-left:-1px;margin-top:-1px;border-top-right-radius:5px;border-top-left-radius:5px;">
+						Say yes, just do it
+					</div>
+					<div style="padding:8px;float:left;width:25%;border-right:1px solid #dcdcdc;">
+						<div style="width:100%;height:101.5px;border:1px solid #dcdcdc;border-radius:5px;overflow:hidden;">
+							<a href="javascript:void(0)"><img src="{{ asset('bundles/app/nikeapple/en/img/applenikelogo2.png') }}" style="display:block;width:100%;max-width:100px;height:auto;margin:0px auto;"></a>
+						</div>
+					</div>
+					<div style="padding:5px;float:left;width:25%;border-right:1px solid #dcdcdc;height:117.5px;text-align:center;line-height:24px;padding-top:10px;position:relative;">
+						<b style="font-size:36px;">230</b><br/>
+						<span style="color:#9d9d9d;font-weight:600;font-size:18px;">Photos</span>
+						<div style="position:absolute;left:0px;bottom:0px;padding:8px;background:#fff;width:302%;border-top:1px solid #dcdcdc;">
+							<button class="btn_blue" style="border:none;color:#fff;font-size:18px;font-weight:600;width:100%;padding:5px 0px;border-radius:5px;outline:none;">Follow</button>
+						</div>
+					</div>
+					<div style="padding:5px;float:left;width:25%;border-right:1px solid #dcdcdc;height:117.5px;text-align:center;line-height:24px;padding-top:10px;">
+						<b style="font-size:36px;">1m</b><br/>
+						<span style="color:#9d9d9d;font-weight:600;font-size:18px;">Followers</span>
+					</div>
+					<div style="padding:5px;float:left;width:25%;height:117.5px;text-align:center;line-height:24px;padding-top:10px;">
+						<b style="font-size:36px;">318</b><br/>
+						<span style="color:#9d9d9d;font-weight:600;font-size:18px;">Following</span>
+					</div>
+					<div style="clear:both;"></div>
+					<div style="width:100%;padding:8px;border-top:1px solid #dcdcdc;">
+						<div style="font-size:20px;font-weight:700;"><a href="javascript:void(0)" style="color:inherit;text-decoration:none;">Happy Better Life</a></div>
+						<p class="text-justify">Healthissues is a serious problem and only a growing issue!
+						Its shown that just half an hour of exercise a day can improve your health, energy level and decrease the risk of heart attack, stress and depression just to mention a few. Join the official Nike and Apple 2016 campaign</p>
+
+						<p style="text-align:center;"><b style="font-size:32px;color:#e94d36;">“Say Yes, Just do it”</b></p>
+
+						<p style="text-align:center;">The first step to a healthy life</p>
+					</div>
+				</div>
+				<div class="box_shadow2" style="width:100%;background:#fff;border-radius:5px;border:1px solid #dcdcdc;padding:8px;text-align:center;min-height:330px;margin-bottom:10px;">
+					<div class="questionare">
+					<span style="font-size:18px;font-weight:800;">Did you know that iPhone 6 comes with build in Health</br>functions that can help you example while running?</span><br/>
+					<div style="width:200px;display:inline-block;padding:10px 0px;">
+					<button class="btn_blue ans1" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">Yes</button>
+					<button class="btn_blue ans1" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">No</button>
+
+					</div>
+					<p>Info: The iPhone 6 has very handy features like a barometer for detecting elevation, accelerometer to measure your distance for walking and running, and even a gyroscope to detect when you’re driving.</p>
+					</div>
+				</div>
+				<div class="box_shadow2 hide" class="no_selection" style="width:100%;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:15px;color:#9d9d9d;">
+					<div style="padding:5px;float:left;width:25%;border-right:1px solid #dcdcdc;height:50px;text-align:center;line-height:24px;padding-top:12px;position:relative;cursor:pointer;">
+						<i class="fa fa-2x fa-th"></i>
+						<div class="arrow_box hide"></div>
+					</div>
+					<div style="padding:5px;float:left;width:25%;border-right:1px solid #dcdcdc;height:50px;text-align:center;line-height:24px;padding-top:12px;cursor:pointer;">
+					<i class="fa fa-2x fa-bars"></i>
+					</div>
+					<div style="padding:5px;float:left;width:25%;border-right:1px solid #dcdcdc;height:50px;text-align:center;line-height:24px;padding-top:12px;cursor:pointer;">
+					<i class="fa fa-2x fa-map-marker"></i>
+					</div>
+					<div style="padding:5px;float:left;width:25%;height:50px;text-align:center;line-height:24px;padding-top:12px;cursor:pointer;">
+					<i class="fa fa-2x fa-street-view"></i>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<div style="width:100%;text-align:center;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;">
+					<div class="box_shadow2" style="width:100%;max-width:330px;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:10px;padding:8px;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;padding-top:98px;position:relative;">
+						<div style="height:50px;width:calc(100% + 3px);background:#2f5f87;text-align:center;font-size:32px;line-height:55px;color:#fff;font-family:'Conv_billabong',Sans-Serif;position:absolute;top:-1px;left:-1px;border-top-left-radius:5px;border-top-right-radius:5px">
+							Photo
+						</div>
+						<div style="height:36px;width:36px;position:absolute;left:11px;top:56px;border-radius:36px;overflow:hidden;">
+							<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/user1_2.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="position:absolute;top:65px;left:52px;font-weight:700;text-align:left;line-height:16px;">Brooke McCleary</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img1_2.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img2.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;height:147px;border:1px solid #dcdcdc;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img3.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;text-align:left;padding-top:10px;">
+							We joined the "Say Yes, Just do it" campaign a few years ago. Also signed up through there at that time iPhone 3 campaign ha ha ha.. I still have it, can you believe it? My husband was actually the one who signed us up, he works alot and was missing quality time with the family. Now we join every year. Its a fun event ;)
+						</div>
+					</div>
+					<div class="box_shadow2" style="width:100%;max-width:330px;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:10px;padding:8px;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;padding-top:98px;position:relative;">
+						<div style="height:50px;width:calc(100% + 3px);background:#2f5f87;text-align:center;font-size:32px;line-height:55px;color:#fff;font-family:'Conv_billabong',Sans-Serif;position:absolute;top:-1px;left:-1px;border-top-left-radius:5px;border-top-right-radius:5px">
+							Photo
+						</div>
+						<div style="height:36px;width:36px;position:absolute;left:11px;top:56px;border-radius:36px;overflow:hidden;">
+							<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/user2.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="position:absolute;top:65px;left:52px;font-weight:700;text-align:left;line-height:16px;">Gareth Steve</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img4.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img5.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;height:147px;border:1px solid #dcdcdc;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img6.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;text-align:left;padding-top:10px;">
+							The "Say Yes, Just do it" campaign have broad us more together as a family. And just the right tools to make activity fun, especially for the kids really makes the different! I won an iWatch, but it seems like my son have take owner ship over that one. He track all he´s running times, and with the Nike Fuel, he almost daily post he´s archievments!
+						</div>
+					</div>
+					<div class="box_shadow2" style="width:100%;max-width:330px;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:10px;padding:8px;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;padding-top:98px;position:relative;">
+						<div style="height:50px;width:calc(100% + 3px);background:#2f5f87;text-align:center;font-size:32px;line-height:55px;color:#fff;font-family:'Conv_billabong',Sans-Serif;position:absolute;top:-1px;left:-1px;border-top-left-radius:5px;border-top-right-radius:5px">
+							Photo
+						</div>
+						<div style="height:36px;width:36px;position:absolute;left:11px;top:56px;border-radius:36px;overflow:hidden;">
+							<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/user3.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="position:absolute;top:65px;left:52px;font-weight:700;text-align:left;line-height:16px;">Charleen Beacker</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img7.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img8.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;height:147px;border:1px solid #dcdcdc;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img9.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;text-align:left;padding-top:10px;">
+							We are not young anymore, but by "wogging" as we call it, we feel younger. And it gives us a special time wtih the grand kids. When we look around at the whole family togehter, those are the times worth remebering. Thank you "Say yes, Just do it" I got one of those Nike Fitness Trackers and when ever we are "wogging" I have to admit that we proudly share it on thet " The Facebook"
+						</div>
+					</div>
+					<div class="box_shadow2" style="width:100%;max-width:330px;background:#fff;border-radius:5px;border:1px solid #dcdcdc;margin-bottom:10px;padding:8px;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;padding-top:98px;position:relative;">
+						<div style="height:50px;width:calc(100% + 3px);background:#2f5f87;text-align:center;font-size:32px;line-height:55px;color:#fff;font-family:'Conv_billabong',Sans-Serif;position:absolute;top:-1px;left:-1px;border-top-left-radius:5px;border-top-right-radius:5px">
+							Photo
+						</div>
+						<div style="height:36px;width:36px;position:absolute;left:11px;top:56px;border-radius:36px;overflow:hidden;">
+							<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/user1.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="position:absolute;top:65px;left:52px;font-weight:700;text-align:left;line-height:16px;">Zoe Nell Lauritz</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img10.png') }}" style="width:100%;height:100%;">
+						</div>
+						<div class="hide_img" style="width:147px;height:147px;border:1px solid #dcdcdc;margin-bottom:8px;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img11.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;height:147px;border:1px solid #dcdcdc;">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/gallery/img12.jpg') }}" style="width:100%;height:100%;">
+						</div>
+						<div style="width:304px;text-align:left;padding-top:10px;">
+							Staying healthy is alfa omega for me, I have a highly stressful job and are alone women in a mans world. Actually joined, "Say Yes, Just do it" cause Its so hard to meet people when you work as much as I do. And should the man of the dream with a good carriere and healthy economy and perferly not more than one kid come along I might accidently stumble into him ;) Its loney on the top..
+						</div>
+					</div>
+				</div>
+				<!--<div style="width:100%;text-align:center;display:flex;flex-direction:row;flex-wrap:wrap;justify-content:space-around;">
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img1.png') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img2.jpg') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img3.jpg') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img4.jpg') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img5.jpeg') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img6.png') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img7.jpg') }}">
+					</div>
+					<div class="gallery_img">
+						<img src="{{ asset('bundles/app/nikeapple/en/img/img8.png') }}">
+					</div>
+				</div>-->
+			</div>
+			<div style="height:65px;width:100%;position:absolute;bottom:0px;left:0px;border-top:5px solid #fff;">
+				<div class="btn_gradient active no_selection" style="width:20%;float:left;text-align:center;height:60px;line-height:60px;color:#fff;"><img src="{{ asset('bundles/app/nikeapple/en/img/homeicon.png') }}"></div>
+				<div class="btn_gradient no_selection" style="width:20%;float:left;text-align:center;height:60px;line-height:60px;color:#fff;"><img src="{{ asset('bundles/app/nikeapple/en/img/staricon.png') }}"></div>
+				<div class="btn_blue no_selection" style="width:20%;float:left;text-align:center;height:60px;line-height:60px;color:#fff;"><img src="{{ asset('bundles/app/nikeapple/en/img/instaicon.png') }}"></div>
+				<div class="btn_gradient no_selection" style="width:20%;float:left;text-align:center;height:60px;line-height:60px;color:#fff;"><img src="{{ asset('bundles/app/nikeapple/en/img/hearticon.png') }}"></div>
+				<div class="btn_gradient no_selection" style="width:20%;float:left;text-align:center;height:60px;line-height:60px;color:#fff;"><img src="{{ asset('bundles/app/nikeapple/en/img/lasticon.png') }}"></div>
+				<div class="btn_gradient" style="clear:both;"></div>
+			</div>
+		</div>
+		<div class="modal fade" tabindex="-1" role="dialog">
+			<div style="width:100%;height:100vh;display:flex;flex-direction:column;justify-content:center;">
+				<div class="box_shadow" style="width:100%;max-width:500px;min-height:500px;border-radius:100px;background:#fff;margin:0px auto;padding:20px;border:10px solid #e94d36;overflow:hidden;color:#e94d36;">
+				<img src="{{ asset('bundles/app/nikeapple/en/img/appleicon.png') }}" style="display:block;margin:0px auto;">
+				<div style="width:100%;max-width:300px;margin:0px auto;text-align:center;padding:15px;font-size:16px;">
+				<p>Apple and Nike have lauched the "Say yes, just do it" 2016 campaign for a happy better life! And are giving away a smart Nike fittness tracker together with an Apple iPhone 6s</p>
+				<button style="background:#e94d36;border:none;padding:10px;color:#fff;display:block;width:100%;border-radius:10px;margin-bottom:15px;font-size:24px;font-weight:700;text-transform:uppercase;outline:none;" data-dismiss="modal">Take the first step</button>
+				<p>There for the "Say yes, Just do it!" have been launched and we are giving a way an iPhone together with a Nike Fittness tracker. The perfect start towards a healthier lifestyle. To participate, just answer 4 short questions! Happybetterlife Say yes, just do it!</p>
+				</div>
+				<img src="{{ asset('bundles/app/nikeapple/en/img/nikeicon.png') }}" style="display:block;margin:0px auto;">
+				</div>
+			</div>
+		</div>
+		<script>
+		$(document).on("ready",function(){
+			//$(".modal").modal('show');
+		});
+
+		$(document).on("click",".ans1",function(){
+			$(".questionare *").hide();
+			setTimeout(function(){
+				$(".questionare").append('<span style="font-size:18px;font-weight:800;">Did you now that iPhone comes with phase detection,</br>so you are going to get pro-quality video and picture?</span><br/>\
+					<div style="width:200px;display:inline-block;padding:10px 0px;">\
+					<button class="btn_blue ans2" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">Yes</button>\
+					<button class="btn_blue ans2" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">No</button>\
+					</div>\
+					<p>Info: These are the first phones in the world to be equipped with phase detection autofocusing,</br> so you are going to get pro-quality automatic focusing while shooting videos or taking a picture.</br> No other smartphone has this.</p>').hide().fadeIn();
+			},300);
+		});
+		$(document).on("click",".ans2",function(){
+			$(".questionare *").hide();
+			setTimeout(function(){
+				$(".questionare").append('<span style="font-size:18px;font-weight:800;">Wi-Fi wonder! How much faster is the new wifi support in iPhone 6?</span><br/>\
+					<div style="width:200px;display:inline-block;padding:10px 0px;">\
+					<button class="btn_blue ans3" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">Up to 3 time faster</button>\
+					<button class="btn_blue ans3" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">Up to 1 time faster</button>\
+					<button class="btn_blue ans3" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">up to 2 time faster</button>\
+					</div>\
+					<p>Info: Wi-Fi support is far, far better. You can look forward to Wi-Fi speeds, up to three times faster</br> in comparison to the previous generation of iPhones - thanks to the support for VoLTE</p>').hide().fadeIn();
+			},300);
+		});
+		$(document).on("click",".ans3",function(){
+			$(".questionare *").hide();
+			setTimeout(function(){
+				$(".questionare").append('<span style="font-size:18px;font-weight:800;">New feature: The new burst mode that can take up to 10 picture pr second! Did you know that it also can detect smiles and blinks so you never again get pictures in that typical moment?</span><br/>\
+					<div style="width:200px;display:inline-block;padding:10px 0px;">\
+					<button class="btn_blue ans4" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">Yes</button>\
+					<button class="btn_blue ans4" style="border:none;color:#fff;padding:8px;display:block;width:100%;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;">No</button>\
+					</div>\
+					<p>Now you can really nail that selfie and showcase your best duck-face on Facebook. Alternatively your camera-shy friend can no longer be mad at you for posting a group pic on social media because she’ll never be blinking again.</p>').hide().fadeIn();
+			},300);
+		});
+		$(document).on("click",".ans4",function(){
+			$(".questionare *").hide();
+			setTimeout(function(){
+				$(".questionare").append('<img src="http://25.media.tumblr.com/b213065d7c1cabf3420dbc6a8a8a9200/tumblr_muweqgzgLK1qinw58o1_500.gif" style="display:block;margin:0px auto;width:250px;height:auto;margin-bottom:10px;"><span>Please wait while we are submitting your results...</span><br/>\
+					<p style="font-size:16px;font-weight:600;padding-top:15px;" class="tips">Make sure you have plenty of fluids and take a water bottle with you on your run. Try to drink plenty of water before, during and after any activity.</p>').hide().fadeIn();
+				setTimeout(function(){
+					$(".tips").fadeOut();
+					setTimeout(function(){
+						$(".tips").text('A beginner to exercise should start with brisk walking, progress to jogging and work up to running.').fadeIn();
+						setTimeout(function(){
+							$(".tips").fadeOut();
+							setTimeout(function(){
+								$(".tips").text('See a doctor for a check-up before you start running. This is especially important if you are over 40 years, are overweight, have a chronic illness or haven\'t exercised in a long time.').fadeIn();
+							},500);
+							setTimeout(function(){
+								$(".questionare *").hide();
+								setTimeout(function(){
+									var name = $("#user_name").val();
+									$(".questionare").append('<div style="width:100%;max-width:400px;border-radius:100px;border:25px solid #e94d36;padding:30px;margin:0px auto;"><p style="font-size:18px;color:#2f5f87;">Congratulation '+name+' you are selected for the iPhone 6s with the Nike Fuel App and Nike Fitness tracker the first step towards a healthy lifestyle</p><img src="{{ asset('bundles/app/nikeapple/en/img/prod2.png') }}" style="display:block;margin:0px auto;width:100%;max-width:250px;height:auto;margin-bottom:10px;">\
+					<a href="{{ path('p_signup', {'url':campaign.url}) }}" style="text-decoration:none;"><button style="background:#e94d36;border:none;color:#fff;padding:8px;display:block;width:100%;max-width:250px;font-size:18px;font-weight:600;margin-bottom:10px;outline:none;border-radius:5px;margin:0px auto;">“Say Yes, Just do it”</button></a>\
+					</div></div>').hide().fadeIn();
+								},500);
+							},500);
+						},1500);
+					},500);
+				},1500);
+			},300);
+		});
+		</script>
+	</body>
+</html>
